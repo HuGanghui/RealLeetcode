@@ -7,7 +7,7 @@ import java.util.Deque;
  * 剑指 Offer 59 - I. 滑动窗口的最大值 Easy --
  * https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/
  *
- * 这题暴力解法很简单时间复杂度O(kn),O(n)的方法思想可以参考"队列的最大值"，但稍微更复杂些，
+ * 这题暴力解法很简单，时间复杂度O(kn),O(n)的方法思想可以参考"队列的最大值"，但稍微更复杂些，
  * 分形成窗口和未形成窗口两个阶段，并且保证了队首元素就是当前窗口的最大值。
  */
 public class MaxSlidingWindow {
