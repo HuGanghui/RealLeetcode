@@ -158,4 +158,30 @@ class Pair {
 
 这两个是类似也是类似的解法
 
+[456. 132模式](https://leetcode-cn.com/problems/132-pattern/)
+
+这题有很多值得考究的点：
+       1. 对于题目要求的子序列符合 ai < ak < aj, 其中 i<j<k，首先将问题学会转化为找到一个元素 aj,
+  在区间[1, j-1]里有比他小的元素M1，在区间[j+1, n]里也有比他小的元素M2, 并且M2>M1，因此首先找的
+  [1, j-1]里的最小值M1
+       2. 然后我们可以暴力求解了，复杂度O(n^2), 比较难想的就是可以从数组尾部开始，委会一个单调递减的栈，要求对a[j], 栈内元素
+  必须大于对应M1，否则就出栈，然后比较栈顶元素和a[j], 如果栈顶元素 < a[j], 那我们就找的了，不然就入栈，符合单减栈的要求
+       3. 在2.隐藏了一个点就是M1所在数组也是单减的，因此对于栈内元素大于对应M1，否则就出栈是不影响后面的。
+
+```java
+for (int j = nums.length -1; j >= 1; j--) {
+    if (nums[j] > min[j]) {
+        while (!deque.isEmpty() && deque.peekLast() <= min[j]) { // 多了个第三方排除条件
+            deque.removeLast();
+        }
+        if (!deque.isEmpty() && deque.peekLast() < nums[j]) { // 只有小于栈顶元素才能入栈，维护了单调栈
+            return true;
+        }
+        deque.addLast(nums[j]);
+    }
+}
+```
+
+
+
 ### 4.2 回溯法
