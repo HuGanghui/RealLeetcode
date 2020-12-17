@@ -31,13 +31,13 @@ public class CountNegatives {
         while (left <= right) {
             int middle = left + (right - left) / 2;
             if (array[middle] >= 0) {
-                left = left + 1;
+                left = middle + 1;
             } else if (array[middle] < 0) {
                 if (middle == 0 || array[middle -1] >=0) {
                     sum = n - middle;
                     break;
                 }
-                right = right - 1;
+                right = middle - 1;
             }
         }
         return sum;
