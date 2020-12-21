@@ -288,3 +288,168 @@ func searchLastLessElement(nums []int, target int) int {
 ```
 
 ### 4.3 回溯法
+
+### 4.4 动态规划
+本小节参考：https://github.com/labuladong/fucking-algorithm & 《算法导论》动态规划章节
+
+**动态规划问题的一般形式就是求最值**。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如求最长递增子序列，
+最小编辑距离等等。
+
+既然是要求最值，核心问题是什么呢？**求解动态规划的核心问题是穷举**。因为要求最值，肯定要把所有可行的答案穷举出来，然后在其中找最值。
+
+对，动态规划的核心就是穷举，类似回溯法/分治法，可以用递归求解，但是又有特别之处，特别之处就在于具有**重叠子问题**，这种情况，
+如果直接使用分治/递归，会有许多不必要的工作，反复求解公共子问题，但动态规划对每个子问题只求解一次，将其保存到一个表格中，无限重复计算。
+（dynamic programming, "programming"指的就是一种表格法）。 
+
+而且动态规划问题一定会**具备最优子结构**，这样才能通过子问题的最值得到原问题的最值，注意**满足最优子结构，子问题必然互相独立**，
+负责如果相互制约，就不具有最优子结构。
+
+有最优子结构之后，关键核心便是正确列出**状态转移方程**，也就是如何通过子问题求解当前问题。
+
+因此可以总结出动态规划问题的三要素：
+
+* 重叠子问题
+* 最优子结构
+* 状态转移方程
+
+其中状态转移方程是最关键的，这里有个labuladong的思维框架：
+
+**明确「状态」 -> 定义 dp 数组/函数的含义 -> 明确「选择」-> 明确 base case。**
+
+[斐波那契数列](https://leetcode-cn.com/problems/fibonacci-number/submissions/)
+以及[零钱兑换问题](https://leetcode-cn.com/problems/coin-change/)，都使用了动态规划来求解，
+下面列出这两题递归/回溯、动态规划-自顶向下（备忘录法）以及 动态规划-自低向上 三种方法，以供思考：
+
+斐波那契数列：
+
+严格说斐波那契数列不太算是动态规划问题，因为并不是求最值，也没有最优子结构，只是直接有了状态转移方程。。。，所以就可以套用
+动态规划的优化思想。
+
+```java
+    // 递归
+    private int recursive(int n) {
+        if (n == 0 || n == 1) {
+            return n;
+        }
+    
+        return recursive(n - 1) + recursive(n - 2);
+    }
+```
+
+
+```java
+    // 自顶向下
+    public int fib(int n) {
+        int[] memo = new int[n+1]; // 备忘录
+        return up2down(n, memo);
+    }
+    
+    private int up2down(int n, int[] memo) {
+        if (n == 0 || n == 1) {
+            return n;
+        }
+    
+        if (memo[n] != 0) {
+            return memo[n];
+        }
+    
+        return up2down(n - 1, memo) + up2down(n - 2, memo);
+    }
+```
+
+```java
+    // 自低向上
+    private int down2up(int n) {
+        int[] dp = new int[n+1];
+        dp[0] = 0;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
+```
+
+零钱兑换问题：
+该问题具有最优子结构，应该硬币数量都是无限的，不会出现子问题相关联的情况。
+
+```java
+    // 穷举回溯的解法，会超时 复杂度 O(S^n) S为coins数量，n为每个coin在amount下可取的最大值
+    private int result = -1;
+    public int coinChange(int[] coins, int amount) {
+        int size = 0;
+        backtracking(0, size, coins, amount);
+        return result;
+    }
+
+    private void backtracking(int startIndex, int size, int[] coins, int amount) {
+        if (amount == 0) {
+            if (result == -1 || size < result) {
+                result = size;
+            }
+            return;
+        }
+
+        for (int i = startIndex; i < coins.length; i++) {
+            if (result != -1 && size > result) {
+                continue;
+            }
+            if (amount >= coins[i]) {
+                size++;
+                backtracking(i, size, coins, amount - coins[i]);
+                size--;
+            }
+        }
+    }
+```
+
+```java
+    // 动态规划-自上而下，备忘录的形式
+    public int coinChange(int[] coins, int amount) {
+        if (amount < 1) {
+            return 0;
+        }
+        return coinChange(coins, amount, new int[amount]);
+    }
+
+    private int coinChange(int[] coins, int rem, int[] count) {
+        if (rem  < 0) {
+            return -1;
+        }
+
+        if (rem == 0) {
+            return 0;
+        }
+
+        if (count[rem - 1] != 0) {
+            return count[rem - 1];
+        }
+
+        int min = Integer.MAX_VALUE;
+        for (int coin : coins) {
+            int res = coinChange(coins, rem - coin, count);
+            if (res >= 0 && res < min) {
+                min = 1 + res;
+            }
+        }
+        count[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return count[rem - 1];
+    }
+```
+```java
+    // 动态规划-自下而上
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        int max = amount + 1;
+        Arrays.fill(dp, max);
+        dp[0] = 0;
+        for (int i = 1; i <= amount; i++) {
+            for (int j = 0; j < coins.length; j++) {
+                if (coins[j] <= i) {
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                }
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+```
