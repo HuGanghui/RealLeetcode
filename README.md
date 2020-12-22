@@ -18,6 +18,47 @@ most of my solutions of algorithm problems in leetcode.
 
 ## 4. Solutions 
 
+### 4.0 Java内置数据结构常用API
+
+#### Map 
+
+```java
+    // 常用的 get put replace 操作
+    Map<Character, Integer> map = new HashMap<>();
+    char[] chars = s.toCharArray();
+    for (char ele : chars) {
+        if (map.containsKey(ele)) {
+            map.replace(ele, map.get(ele)+1); 
+        } else {
+            map.put(ele, 1);
+        }
+    }
+```
+```java
+    // 不同的遍历方法
+    // 迭代Entry
+    for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+    }
+    
+    // 迭代键
+    for (Integer key : map.keySet()) {
+        System.out.println("Key = " + key);
+    }
+
+    // 迭代值
+    for (Integer value : map.values()) {
+        System.out.println("Value = " + value);
+    }
+    
+    // 迭代器
+    Iterator<Map.Entry<Integer, Integer>> entries = map.entrySet().iterator();
+    while (entries.hasNext()) {
+        Map.Entry<Integer, Integer> entry = entries.next();
+        System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+    }
+```
+
 ### 4.1 栈和队列
 
 #### 单调队列/栈 
