@@ -18,6 +18,16 @@ most of my solutions of algorithm problems in leetcode.
 
 ## 4. Solutions 
 
+commit 相关前缀含义：
+
+ * Better Solution 有更好的解法需要后续学习
+ * DFS             有DFS的写法不熟练
+ * down2up?        DP中自底向上的方法没有理解/掌握
+ * Base Case       边界条件/case需要注意
+ * LeetcodeWeekly  力扣周赛题目
+ * Unsolved        没有理解/掌握的题目
+ 
+
 ### 4.0 Java内置数据结构常用API
 
 #### Map 
