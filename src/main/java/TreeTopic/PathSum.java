@@ -3,9 +3,7 @@ package TreeTopic;
 import util.TreeNode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 113. 路径总和 II Median
@@ -32,18 +30,17 @@ public class PathSum {
             return;
         }
 
-        if (root.left == null && root.right == null && currSum + root.val == sum) {
-            temp.add(root.val);
-            result.add(new ArrayList<>(temp));
-            temp.remove(temp.size()-1);
+        if (root.left == null && root.right == null) {
+            if(currSum + root.val == sum){
+                temp.add(root.val);
+                result.add(new ArrayList<>(temp));
+                temp.remove(temp.size()-1);
+            }
             return;
         }
 
         temp.add(root.val);
         backtrack(root.left, sum, result, temp, currSum + root.val);
-        temp.remove(temp.size()-1);
-
-        temp.add(root.val);
         backtrack(root.right, sum, result, temp, currSum + root.val);
         temp.remove(temp.size()-1);
     }
