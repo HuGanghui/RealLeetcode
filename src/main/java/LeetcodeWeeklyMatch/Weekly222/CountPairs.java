@@ -1,4 +1,4 @@
-package LeetcodeWeeklyMatch.TwoTwoTwoWeekly;
+package LeetcodeWeeklyMatch.Weekly222;
 
 import java.util.HashMap;
 import java.util.Map;

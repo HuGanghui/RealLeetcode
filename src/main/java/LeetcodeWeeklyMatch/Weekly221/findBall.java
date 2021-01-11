@@ -1,4 +1,4 @@
-package LeetcodeWeeklyMatch.TwoTwoOneWeekly;
+package LeetcodeWeeklyMatch.Weekly221;
 
 /**
  * 5210. 球会落何处 Median

@@ -1,4 +1,4 @@
-package LeetcodeWeeklyMatch.FourThreeDoubleWeekly;
+package LeetcodeWeeklyMatch.DoubleWeekly43;
 
 import java.util.Arrays;
 import java.util.HashSet;

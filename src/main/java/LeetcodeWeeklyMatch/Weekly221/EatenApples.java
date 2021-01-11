@@ -1,4 +1,4 @@
-package LeetcodeWeeklyMatch.TwoTwoOneWeekly;
+package LeetcodeWeeklyMatch.Weekly221;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
