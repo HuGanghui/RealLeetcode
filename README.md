@@ -29,6 +29,7 @@ most of my solutions of algorithm problems in leetcode.
    * O(n^2) n <= 3000 
    * O(n) n <= 10^7
    * O(nlogn) <= 10^5 (log2(10^5)约等于10)
+   如果n的大小在20以内，基本上可以料定是类似DFS/BFS之类的穷举方法了，同时加上题目的其它信息可以判断出来。
 
 commit 相关前缀含义：
 
