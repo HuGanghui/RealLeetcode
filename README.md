@@ -39,7 +39,7 @@ commit 相关前缀含义：
  * Base Case       边界条件/case需要注意
  * LeetcodeWeekly  力扣周赛题目
  * Unsolved        没有理解/掌握的题目
- 
+
 
 ### 4.0 Java内置数据结构常用API
 
@@ -520,4 +520,208 @@ func searchLastLessElement(nums []int, target int) int {
         }
         return dp[amount] > amount ? -1 : dp[amount];
     }
+```
+
+### 4.5 并查集（union-find）算法
+
+本小节参考：https://github.com/labuladong/fucking-algorithm & 《算法4》UF算法部分
+
+并查集是一种数据结构，主要是为了解决图论中的动态连通性的问题。（《算法4》开头就介绍了这种算法）
+
+UF算法核心就是实现union和connected两个API：
+
+```java
+interface UF {
+    void union(int p, int q); // 在 p、q之间添加一条连接
+    boolean connected(int p, int q); // 如果p、q存在于同一个分量，则返回true
+    int find(int p); // 返回p所在的分量的标识符
+    int count(); // 返回当前联通分量的数量
+}
+```
+union会将两个分量归并，connected判断两个节点是否存在于同一个分量之中。
+连通是一种等价关系，具有如下三个性质：
+
+* 自反性：节点`p`和`p`是连通的
+* 对称性：如果节点`p`和`q`连通，那么`q`和`p`也连通
+* 传递性：如果节点`p`和`q`连通，`q`和`r`连通，那么`p`和`r`也连通
+
+那么用什么模型来表示这幅图的连通状态呢？用什么数据结构来实现代码呢？
+
+使用森林（若干棵树）来表示图的动态连通性，用数组来具体实现这个森林。
+
+怎么用森林来表示连通性呢？我们设定树的每个节点有一个指针指向其父节点，如果是根节点的话，这个指针指向自己。
+
+```java
+class UF {
+    // 记录连通分量
+    private int count;
+    // 记录所有节点的父节点
+    private int[] parent;
+    
+    public UF(int n) {
+        // 一开始互不连通
+        this.count = n;
+        // 父节点指针初始指向自己
+        parent = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
+    }
+    
+    public void union(int p, int q) {
+        int rootP = find(p);
+        int rootQ = find(q);
+        if (rootP == rootQ) {
+            return;
+        }
+        // 合并两棵树
+        parent[rootP] = rootQ;
+        count--;
+    }
+    
+    public boolean connected(int p, int q) {
+        int rootP = find(p);
+        int rootQ = find(q);
+        return rootP == rootQ;
+    }
+    
+    // 返回某个节点的根节点，根节点的标志就是父节点就是自己
+    private int find(int x) {
+        while(parent[x] != x) {
+            x = parent[x];
+        }
+        return x;
+    }
+    
+    public int count() {
+        return count;
+    }
+}
+```
+这个用数组模拟了一个森林，其实就是清华的数据结构书中提到的使用数组实现树并且只有父指针的一种树型数据结构的实现方式，
+看了每种数据结构都是有自己的用处的。
+
+该算法的复杂度是多少？connected和union的复杂度都是find函数造成的，因此复杂度和find一致。
+
+find主要功能就是从某个节点向上遍历到树根，其时间复杂度就是树的高度。
+我们可能习惯性地认为树的高度就是logN，但这并不一定。logN的高度只存在于平衡二叉树，
+对于一般的树可能出现极端不平衡的情况，使得「树」几乎退化成「链表」，树的高度最坏情况下可能变成N。
+所以上述算法的复杂度为O(N)。
+
+问题的关键在于，如何想办法避免树的不平衡呢？只需要略施小计即可。
+
+**平衡性优化**
+
+我们其实是希望，小一些的树接到大一些的树下面，这样就能避免头重脚轻，更平衡一些。
+
+解决方法是额外使用一个`size`数组，记录每棵树包含的节点数，我们不妨称为「重量」：
+
+```java
+// 加权quick-union算法
+class UF {
+    private int count;
+    private int[] parent;
+    private int[] size;
+    
+    public UF(int n) {
+        this.count = n;
+        parent = new int[n];
+        // 初始每棵树只有一个节点
+        // 重量都是1
+        size = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            size[i] = 1;
+        }
+    }
+    /* 其他函数 */
+    
+    public void union(int p, int q) {
+        int rootP = find(p);
+        int rootQ = find(q);
+        if (rootP == rootQ) {
+            return;
+        }
+        
+        // 小树接到大树下面，较平衡
+        if (size[rootP] > size[rootQ]) {
+            parent[rootQ] = rootP;
+            size[rootP] += size[rootQ];
+        } else {
+            parent[rootP] = rootQ;
+            size[rootQ] += size[rootP];
+        }
+        
+        count--;
+    }
+}
+
+```
+可以证明加权quick-union算法的find、union、connected的时间复杂度都为O(logN),对数级别，即便规模上亿(10^9),
+也只需要20次以内的计算，非常快。
+
+**最优算法-路径压缩**
+是否有保证可以在常数时间内完成各种操作的算法？研究人员研究了很多年，有很多quick-union和加权quick-union的变体，其中
+一种非常容易实现的就是**路径压缩**，只需要在find中添加一行代码，但是路径压缩版本的quick-union非常非常接近但均摊成本
+仍没有达到常数级别O(1)：
+```java
+private int find(int x) {
+    while(parent[x] != x) {
+        // 进行路径压缩
+        parent[x] = parent[parent[x]];
+        x = parent[x];
+    }
+    return x;
+}
+```
+完整路径压缩版本的UF：
+
+```java
+class UF {
+    private int count;
+    private int[] parent;
+    private int[] size;
+    
+    public UF(int n) {
+        count = n;
+        parent = new int[n];
+        size = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            size[i] = 1;
+        }
+    }
+    
+    public void union(int p , int q) {
+        int rootP = find(p);
+        int rootQ = find(q);
+        if (rootP == rootQ) {
+            return;
+        }
+        if (size[rootP] > size[rootQ]) {
+            parent[rootQ] = rootP;
+            size[rootP] += size[rootQ];
+        } else {
+            parent[rootP] = rootQ;
+            size[rootQ] += size[rootP];
+        }
+        count--;
+    }
+    
+    private int find(int p) {
+        while (parent[p] != p) {
+            parent[p] = parent[parent[p]];
+            p = parent[p];
+        }
+        return p;
+    }
+    
+    public boolean connected(int p, int q) {
+        return find(p) == find(q);
+    }
+    
+    public int count() {
+        return count;
+    }
+}
 ```
