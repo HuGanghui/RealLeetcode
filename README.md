@@ -12,6 +12,10 @@ most of my solutions of algorithm problems in leetcode.
 
 ### 1.2 Tutorials
 
+* [OI Wiki](https://oi-wiki.org)
+  介绍了基本的算法题型、包含不少概念和编码小技巧
+  状压DP就是从这了解的
+
 ## 2. Courses/Seminars/Videos
 
 ## 3. Toolbox & Websites
@@ -354,6 +358,7 @@ func searchLastLessElement(nums []int, target int) int {
 ### 4.3 回溯法
 
 ### 4.4 动态规划
+
 本小节参考：https://github.com/labuladong/fucking-algorithm & 《算法导论》动态规划章节
 
 **动态规划问题的一般形式就是求最值**。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如求最长递增子序列，
@@ -521,6 +526,13 @@ func searchLastLessElement(nums []int, target int) int {
         return dp[amount] > amount ? -1 : dp[amount];
     }
 ```
+
+动态规划其实可以细分一些类别：
+* [背包DP](https://oi-wiki.org/dp/knapsack/)
+* [树形DP](https://oi-wiki.org/dp/tree/)
+* [状压DP](https://oi-wiki.org/dp/state/)
+   * [旅行商问题（状压dp入门）](https://www.cnblogs.com/hhlya/p/13305987.html)
+* ... 更多类别参考[OI Wiki 动态规划](https://oi-wiki.org/dp/)
 
 ### 4.5 并查集（union-find）算法
 
