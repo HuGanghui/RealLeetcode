@@ -43,6 +43,8 @@ commit 相关前缀含义：
  * Base Case       边界条件/case需要注意
  * LeetcodeWeekly  力扣周赛题目
  * Unsolved        没有理解/掌握的题目
+ 
+[SweepTheTopic](./SweepTheTopic.md)：按模块扫题，快速归纳同模块的不同考察方式以及检验当前模块的自我掌握情况  
 
 
 ### 4.0 Java内置数据结构常用API
@@ -252,10 +254,11 @@ for (int j = nums.length -1; j >= 1; j--) {
 ### 4.2 二分查找/搜索
 本小节参考：https://github.com/halfrost/LeetCode-Go
 
-二分搜索的经典写法。需要注意的三点：
-循环退出条件，注意是 low <= high，而不是 low < high。
-mid 的取值，mid := low + (high-low)>>1
-low 和 high 的更新。low = mid + 1，high = mid - 1。
+二分搜索的经典写法（默认元素从小小到大排列）。需要注意的三点：
+* 循环退出条件，注意是low，high初始化都是可选范围内的最left和最right的数，
+  且low <= high，而不是 low < high。
+* mid 的取值，mid := low + (high-low)>>1
+* low 和 high 的更新。low = mid + 1，high = mid - 1。
 
 ```Go
 func binarySearchMatrix(nums []int, target int) int {
@@ -275,7 +278,7 @@ func binarySearchMatrix(nums []int, target int) int {
 
 ```
 
-二分搜索的变种写法。有 4 个基本变种:
+二分搜索的变种写法。有 4 个基本变种（以下都是默认元素都是从小到大排序）:
 查找第一个与 target 相等的元素，时间复杂度 O(logn)
 查找最后一个与 target 相等的元素，时间复杂度 O(logn)
 查找第一个大于等于 target 的元素，时间复杂度 O(logn)
