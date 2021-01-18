@@ -109,7 +109,7 @@ Easy:
              记得处理一下 时间复杂度 O(n)，空间复杂度 O(n)
   优化思路：**双指针，一个从头开始，一个从尾开始**，如果小于target，头指针右移动，否则，尾指针左移动，
           时间复杂度 O(n)，空间复杂度 O(1)
-    
+  
 #### 2. 行列/二个维度均为单调排列：
 
 Easy:
@@ -120,7 +120,7 @@ Easy:
   优化思路：由于每行每列都是单调的，因此当上一行确定了首个元素，当前行的必然在其左边或者右边，从而减少了复杂度，
           如果继续使用二分，最差也要 O(mlogn/nlogm)，空间复杂度O(1)。也可以不使用二分，就直接依次遍历，时间
           复杂度为O(m + n);
-          
+  
 * [1237. 找出给定方程的正整数解](https://leetcode-cn.com/problems/find-positive-integer-solution-for-a-given-equation/)
   与有序矩阵一样，x对于行，y对应列即可
 
@@ -133,7 +133,7 @@ Easy:
   基本思路：对数组A进行排序，然后数组B的每个元素在A中进行二分，时间复杂度 O(nlogn + mlogn/ mlogm + nlogm)，空间复杂度O(1)
   优化思路：1. 使用两个HashSet保存两个数组，然后遍历其中一个在另一个中进行判断，时间复杂度 O(m+n), 空间复杂度 O(m+n)
           2. 排序 + 双指针，时间复杂度 O(nlogn + mlogm)（主要是排序），双指针寻找O(m + n)，空间复杂度主要看排序使用的额外空间
-          
+  
 * [350. 两个数组的交集 II](https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/)
   II和I的区别主要在于对于重复元素也是要算交集的
   暴力思路：同I
@@ -216,6 +216,7 @@ Median:
 * [1552. 两球之间的磁力](https://leetcode-cn.com/problems/magnetic-force-between-two-balls/)
   这题也是套路和数组分割就是没有区别，只不过这题是最小值的最大
   
+
 Hard:
 
 * [410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)
@@ -242,4 +243,59 @@ Hard:
               return cnt <= m; // 最大值最小是要<=，最小值最大是>=
           }
     ```
+   
+### 动态规划（Dynamic Programming）
+
+#### 基本框架：
+
+动态规划问题的三要素：
+
+* 重叠子问题
+* 最优子结构
+* 状态转移方程
+
+其中状态转移方程是最关键的，这里有个labuladong的思维框架：
+
+**明确「状态」 -> 定义 dp 数组/函数的含义 -> 明确「选择」-> 明确 base case。**
+
+具体的代码框架和例子在[README](./README.md)中已经有详细的描述。
+
+#### 1. 简单具有递推公式
+
+Easy:
+
+* [303. 区域和检索 - 数组不可变](https://leetcode-cn.com/problems/range-sum-query-immutable/)
+  前缀和递推公式：$dp[i] = dp[i-1] + nums[i]$，$dp[i]$表示从0-i的所有元素和，
+  一次O(n)时间复杂度的计算，可以保证后续O(1)时间复杂度获取任何两个索引下标之间的元素和。
+  
+#### 2. 数组求和转换
+
+Easy:
+
+* [剑指 Offer 42. 连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
+  这题是一道经典的转换题，如何获取整个数组的连续子数组的最大和，那就是首先**获取以每个元素结尾
+  （这种状态表示方法值得记住，可以解决很多类似的数组题目）** 的连续子数组的最大和，然后再取其中的最大值，
+  并且递推公式为：$dp[i] = max(dp[i-1] + nums[i], nums[i])$, dp[i]表示以第i元素结尾的连续子数组的最大和。
+  更精妙的思路：分治，后续可以尝试。
+  
+#### 3. 最低花费/代价（最高收益）类型问题
+
+一般的要求最低花费/代价（最高收益）的类型的题目，都是具有最优子结构的，即子问题相互独立，
+dp[i-1]达到最低花费/代价和dp[i]是相互独立的，没有任何的关系。
+
+Easy:
+
+* [746. 使用最小花费爬楼梯](https://leetcode-cn.com/problems/min-cost-climbing-stairs/)
+  爬楼梯问题也很经典，比如多少种爬楼梯的方式，递推公式就是：$dp[i] = dp[i-1] + dp[i-2]$，
+  (之前没有思考过，爬楼梯多少种方式可以直接相加，因为是个排列问题，如果是组合问题，那就不行了)，这题的
+  递推公式也比较容易想到就是：$dp[i] = min(dp[i-1], dp[i-2]) + cost[i]$，dp[i]表示到第i需要的最小代价，
+  那么选择就是从i-1还是i-2来，然后我们选择两种方式中代价最小的，
+  值得注意的是，这题最后要的结果是到n+1的情况，因此最后选择$min(dp[size-1], dp[size-2])$ 即可。
+  
+* [面试题 17.16. 按摩师](https://leetcode-cn.com/problems/the-masseuse-lcci/)
+  本题dp[i]表示选择到第i个时，可获得的最大收益，选择就是选i还是不选i，这样显然递推公式
+  就是：$max(dp[i-1], dp[i-2] + nums[i])$，这里可能有的疑惑是dp[i-1]可能是dp[i-2], 
+  没有选择nums[i-1]，这样就可能出现dp[i-1] + nums[i],但值得注意的是，这里就相当于dp[i-2] + nums[i]，
+  所以递推公式没关系。
+
 
