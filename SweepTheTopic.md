@@ -213,6 +213,9 @@ Median:
 
 * [1011. 在 D 天内送达包裹的能力](https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/)
 
+* [1552. 两球之间的磁力](https://leetcode-cn.com/problems/magnetic-force-between-two-balls/)
+  这题也是套路和数组分割就是没有区别，只不过这题是最小值的最大
+  
 Hard:
 
 * [410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)
@@ -236,7 +239,7 @@ Hard:
                       sum += nums[i];
                   }
               }
-              return cnt <= m;
+              return cnt <= m; // 最大值最小是要<=，最小值最大是>=
           }
     ```
 
