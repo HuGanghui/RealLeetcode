@@ -260,12 +260,16 @@ Hard:
 
 具体的代码框架和例子在[README](./README.md)中已经有详细的描述。
 
-#### 1. 简单具有递推公式
+#### 1. 具有递推公式
+
+**前缀和问题：**
+
+前缀和本身的就包含了递推公式
 
 Easy:
 
 * [303. 区域和检索 - 数组不可变](https://leetcode-cn.com/problems/range-sum-query-immutable/)
-  前缀和递推公式：$dp[i] = dp[i-1] + nums[i]$，$dp[i]$表示从0-i的所有元素和，
+  简单一维前缀和递推公式：$dp[i] = dp[i-1] + nums[i]$，$dp[i]$表示从0-i的所有元素和，
   一次O(n)时间复杂度的计算，可以保证后续O(1)时间复杂度获取任何两个索引下标之间的元素和。
   
 #### 2. 数组求和转换
@@ -297,5 +301,48 @@ Easy:
   就是：$max(dp[i-1], dp[i-2] + nums[i])$，这里可能有的疑惑是dp[i-1]可能是dp[i-2], 
   没有选择nums[i-1]，这样就可能出现dp[i-1] + nums[i],但值得注意的是，这里就相当于dp[i-2] + nums[i]，
   所以递推公式没关系。
+  
+* [198. 打家劫舍](https://leetcode-cn.com/problems/house-robber/submissions/)
+  和17.16按摩师一模一样的，递推公式：$dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i])$
+  
+#### 4. 计数类型问题
 
+计数问题需要搞清楚本质上是组合问题还是排列问题，这个关乎如何选择何种dp状态表示以及含义的。
 
+Easy:
+
+**排列问题：**
+
+排列问题比较简单，就是直接相加就可以，不会有重复的。
+
+* [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
+  递推公式就是：$dp[i] = dp[i-1] + dp[i-2]$
+  
+* [面试题 08.01. 三步问题](https://leetcode-cn.com/problems/three-steps-problem-lcci/)
+  基本思路：动态规划，时间复杂度O(n)，空间复杂度O(n)，递推公式就是：$dp[i] = dp[i-1] + dp[i-2] + dp[i-3]$，
+          这题更值得关注的是三个很大的数的取模的顺序和方法的问题，当然可以进行状态压缩，因为只需要使用前三个数，使得空间复杂度到O(1)。
+  优化思路：1.矩阵快速幂，参考[题解](https://leetcode-cn.com/problems/three-steps-problem-lcci/solution/mei-ri-suan-fa-day-80-suo-you-ren-du-hui-zuo-de-ru/)
+
+Median:
+
+* [1641. 统计字典序元音字符串的数目](https://leetcode-cn.com/problems/count-sorted-vowel-strings/)
+  基本思路：动态规划，时间复杂度O(n)，空间复杂度O(n)，当然可以进行状态压缩，因为只需要使用5个数，使得空间复杂度到O(1)。
+          这题稍微复杂些，考虑长度为i以u结尾的字符串数量：$dp[i][u] = dp[i-1][a] + dp[i-1][e] + dp[i-1][i] + dp[i-1][o] + dp[i-1][u]$ 
+          依次类推，$dp[i][a] = dp[i-1][a]$，最后返回总数$dp[i][a]+...+dp[i][u]$。
+          这题特殊在于递推公式有5个，而不是一个，可能有点超乎想象那种，所有就没想到。
+  
+#### 5. 字符串类型问题
+
+Median:
+
+* [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/)
+  基本思路：动态规划，时间复杂度O(n^2)，空间复杂度O(n^2)，回文尝试从短的到长的判断，
+          递推公式为：$dp[i][j] = dp[i+1][j-1] && s.charAt(i) == s.charAt(j)$，dp[i][j]表示i-j这段字符串是否是回文串，
+          然后递推顺序注意从短到长判断
+  优化思路：中心扩展算法，就是以每个元素为中心，逐步向外扩展，判断是否是回文，从而记录下最长的，不过需要注意，边界情况有两种，一种
+          是一个元素为中心，一个是有两个元素为中心，所以这两种都要考虑。时间复杂度O(n^2)，空间复杂度O(1)，相比DP，主要是空间复杂度
+          的降低，但如果需要保存每个i-j是否是回文的结果，还是需要DP的。
+          
+* [131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)
+  这题放在这里，主要是反应了一个现象：如果需要不断重复使用i-j是否是回文（或者其它结果）的结果，那就最好提前预处理一下，存储下来，
+  这题就是要利用最长回文子串DP过程中会记录下所有i-j是否是回文。这种预处理的优化值得注意。
