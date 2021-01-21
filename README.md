@@ -10,11 +10,19 @@ most of my solutions of algorithm problems in leetcode.
 
 ### 1.1 Books
 
+* [算法（第4版）](https://book.douban.com/subject/19952400/)
+  算法四这本书，讲解细致，不仅仅与实际应用相结合，并且用科学的方法分析算法的复杂度和正确性，
+  是一本值得一看的算法书籍。
+
 ### 1.2 Tutorials
 
 * [OI Wiki](https://oi-wiki.org)
   介绍了基本的算法题型、包含不少概念和编码小技巧
   状压DP就是从这了解的
+  
+* [背包问题九讲](https://github.com/tianyicui/pack/blob/master/V2.pdf)
+  从0-1背包开始，总结了绝大部分的背包问题的变种，很多问题其本质就是背包问题，因此
+  背包问题值得学习。
 
 ## 2. Courses/Seminars/Videos
 
