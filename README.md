@@ -96,6 +96,14 @@ commit 相关前缀含义：
     }
 ```
 
+#### List
+
+```java
+    // list 默认排序方式
+    Collections.sort(list);
+
+```
+
 ### 4.1 栈和队列
 
 #### 单调队列/栈 
@@ -363,6 +371,37 @@ func searchLastLessElement(nums []int, target int) int {
 		}
 	}
 	return -1
+}
+```
+
+二分查找还有一个小小的变种题，就是二分插入，区别就在于需要考虑到一个边界条件，就是当所要插入的
+数值大于当前数组/list中的所有，那不应该返回-1或者什么都不做，而是需要将该值插入到最后。
+根据题目需要，如果需要返回对应index，则设置一个result变量，如果需要完成插入的动作，则设置一个
+boolean类型来做标志即可（例子可见SortTopic/StreamMedianFinderBinarySearch）。
+
+```java
+public int searchInsert(int[] nums, int target) {
+    int left = 0;
+    int right = nums.length - 1;
+    int result = -1;
+    while (left <= right) {
+        int mid = left + ((right - left) >> 1);
+        if (nums[mid] >= target) {
+            if (mid == 0 || nums[mid-1] < target) {
+                result = mid;
+                break;
+            }
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+
+    if (result == -1) {
+        return nums.length;
+    } else {
+        return result;
+    }
 }
 ```
 
