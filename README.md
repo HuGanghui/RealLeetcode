@@ -1,7 +1,7 @@
 # Real Leetcode
 ![](https://img.shields.io/badge/Goal-AlgoAbility-brightgreen)
 ![](https://img.shields.io/badge/Hgh-Get%20it-green)
-![](https://img.shields.io/badge/Number-37-blue)
+![](https://img.shields.io/badge/Number-91-blue)
 
 this repository is to train and improve my algorithm ability, it will contain
 most of my solutions of algorithm problems in leetcode. 
