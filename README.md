@@ -862,6 +862,30 @@ public void DFS(Graph g, int i) {
 }
 ```
 
+#### 广度优先算法
+
+广度优先和深度优先的时间复杂度是一样的，只是访问节点顺序不同。
+```java
+public void BFSTraverse(Graph g) {
+    Deque<Node> queue = new Deque<>();
+    for (int i = 0; i < g.numVertexes; i++) {
+        if (!visited[i]) {
+            visited[i] = true;
+            queue.addLast(i);
+            while(!queue.isEmpty()) {
+                int i = queue.removeFirst();
+                for (int j : G.adj(i)) {
+                    if (!visited[j]) {
+                        visited[j] = true;
+                        queue.addLast(j);
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
 应用实例：在调用链数据中，需要将只有父节点指针的节点结构转换为具有子节点的结构
 （[转换算法](https://www.geeksforgeeks.org/construct-a-binary-tree-from-parent-array-representation/)），
 其实就是一个图的遍历算法的应用，当然有有一些细节的调整，比如访问标记数组换成用哈希表的有无该节点关键字来表示。
