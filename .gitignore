@@ -40,3 +40,6 @@ replay_pid*
 
 # Apple MacOS hidden file
 .DS_Store
+
+# test file
+src/main/java/Test.java
