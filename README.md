@@ -478,8 +478,9 @@ public int searchInsert(int[] nums, int target) {
         if (memo[n] != 0) {
             return memo[n];
         }
-    
-        return up2down(n - 1, memo) + up2down(n - 2, memo);
+        
+        memo[n] = up2down(n - 1, memo) + up2down(n - 2, memo);
+        return memo[n];
     }
 ```
 
