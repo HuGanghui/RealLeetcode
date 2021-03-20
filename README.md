@@ -905,3 +905,5 @@ public void BFSTraverse(Graph g) {
 应用实例：在调用链数据中，需要将只有父节点指针的节点结构转换为具有子节点的结构
 （[转换算法](https://www.geeksforgeeks.org/construct-a-binary-tree-from-parent-array-representation/)），
 其实就是一个图的遍历算法的应用，当然有有一些细节的调整，比如访问标记数组换成用哈希表的有无该节点关键字来表示。
+
+### 4.7 排序算法
