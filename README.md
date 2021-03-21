@@ -108,6 +108,16 @@ commit 相关前缀含义：
 
 ```
 
+#### PriorityQueue
+
+```java
+   // 队列常用的API：offer，poll，peek
+   // 并且优先队列有时候需要根据元素配置比较规则，一般使用匿名表达式非常简洁,
+   // 其中 o1 - o2 就是小顶堆，反正就是大顶堆
+   PriorityQueue<ListNode> pq = new PriorityQueue<>((o1, o2) -> {return o1.val - o2.val;});
+
+```
+
 ### 4.1 栈和队列
 
 #### 单调队列/栈 
