@@ -509,3 +509,33 @@ Median:
           当前needs-list的最小花费，递归结束条件就是needs-list均为0了，返回0。
   当然，本题还有一个特殊的点，在于必然包含单位"1"，因此利用这个特点同样可以有一个写法简便上的优化，具体可以看commit中的解答。
   
+#### 7. 多状态+限制条件+选择
+
+这部分的总结是因为有一类题目的递推公式没有那么直观，但是通过我们明确状态（一般不止一个），限制条件以及选择之后就会发现其实没有那么的复杂。
+
+* [801. 使序列递增的最小交换次数 Median](https://leetcode-cn.com/problems/minimum-swaps-to-make-sequences-increasing/)
+  分析：多了一个状态是否交换，然后在此基础上考虑和i-1的不同状态组合再结合限制条件后的选择的可能性，基本上递归公式就可以搞定。
+       同时注意在某些情况下不满足限制条件，数值应该是多少。
+  
+* [2020年腾讯技术笔试题-最少休息天数](/src/main/java/DynamicProgramming/MinRest.java)
+  分析：这题就是状态换成了当天是工作，休息还是健身，其它没有区别。
+  
+* [1641. 统计字典序元音字符串的数目](https://leetcode-cn.com/problems/count-sorted-vowel-strings/)
+  分析：这题其实也是，多了一个结尾的字符是什么，也算是一个状态，然后状态影响选择（递推公式）
+
+* [494. 目标和](https://leetcode-cn.com/problems/target-sum/)
+  分析：如果将和也看作另一状态，其实这个算可以属于这一类，这个还简单点，因为没有啥因为不同状态的限制条件。
+
+* [股票买卖系列](https://leetcode-cn.com/problemset/all/?topicSlugs=dynamic-programming&search=股票)
+  参考labuladong文章：https://mp.weixin.qq.com/s/lQEj_K1lUY83QtIzqTikGA
+  分析：股票系列，从状态或者DP table入手，其实也就是有两种状态，一个是天数，另一个就是当前是否持有股票，当然这是k为
+       无限的情况，如果有k数量限制，则是再多一个状态，dp[0-i][0-k][0/1]，都是可以通过一个通用的分析来获得一个基本通用
+       的递归方程，而冷冻期/手续费都是在这个基础上一点点小的修改罢了。
+  labuladong 通过穷举+memo备忘录完成本题的自顶向下的动态规划通用框架：https://mp.weixin.qq.com/s/TrN7mMdLEPCmT5mOXzgP5A
+  通过比较可以发现，两者从思路上还是有所差别的，基本上可以总结一下：从一般的穷举出发，然后memo，就自顶向下了，如果看出来可以利用状态出发，
+  那就是DP table，自底向上的套路了。
+  
+  不同的题目可能更适合或者说想到某一种更容易/直观。
+  
+  不过我感觉股票系列的动态规划的最优子结构还是不太确定，直观上不太好理解，暂时认为有的吧。
+  
