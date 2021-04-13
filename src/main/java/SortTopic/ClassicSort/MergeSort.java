@@ -18,37 +18,38 @@ public class MergeSort implements ArraySort {
     @Override
     public void sort(int[] array) {
         aux = new int[array.length];
-        sortRecurse(array, 0, array.length);
+        mergeSort(array, 0, array.length-1);
     }
 
-    private void sortRecurse(int[] array, int low, int high) {
+    private void mergeSort(int[] array, int low, int high) {
         if (low >= high) {
             return;
         }
         int mid = low + (high - low) / 2;
-        sortRecurse(array, low, mid);
-        sortRecurse(array, mid + 1, high);
+        mergeSort(array, low, mid);
+        mergeSort(array, mid + 1, high);
         merge(array, low, mid, high);
     }
 
-    private void merge(int[] array, int low, int mid, int high) {
+    private void merge(int[] arr, int low, int mid, int high) {
+        for (int k = low; k <= high; k++) {
+            aux[k] = arr[k];
+        }
+        int k = low;
         int i = low;
         int j = mid + 1;
-        for (int k = low; k <= high; k++) {
-            aux[k] = array[k];
-        }
         while (i <= mid && j <= high) {
             if (aux[i] < aux[j]) {
-                array[i++] = aux[i];
+                arr[k++] = aux[i++];
             } else {
-                array[j++] = aux[j];
+                arr[k++] = aux[j++];
             }
         }
-        while (i <= mid) {
-            array[i++] = aux[i];
+        while(i <= mid) {
+            arr[k++] = aux[i++];
         }
-        while (j <= high) {
-            array[j++] = high;
+        while(j <= high) {
+            arr[k++] = aux[j++];
         }
     }
 

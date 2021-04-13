@@ -42,7 +42,7 @@ public class InsertSort implements ArraySort {
             }
             if (insertIndex != -1) {
                 int temp = array[i];
-                for (int j = i; j > insertIndex; j++) {
+                for (int j = i; j > insertIndex; j--) {
                     array[j] = array[j-1];
                 }
                 array[insertIndex] = temp;
