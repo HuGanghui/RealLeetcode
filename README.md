@@ -918,3 +918,6 @@ public void BFSTraverse(Graph g) {
 其实就是一个图的遍历算法的应用，当然有有一些细节的调整，比如访问标记数组换成用哈希表的有无该节点关键字来表示。
 
 ### 4.7 排序算法
+本小节参考：https://github.com/hustcc/JS-Sorting-Algorithm && 邓老师的数据结构第五章优先队列
+
+![排序算法比较](https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/sort.png)
