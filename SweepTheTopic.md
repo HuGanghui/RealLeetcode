@@ -539,3 +539,30 @@ Median:
   
   不过我感觉股票系列的动态规划的最优子结构还是不太确定，直观上不太好理解，暂时认为有的吧。
   
+### 树（Tree）
+
+两棵树同时遍历：
+
+* [617. 合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)
+  基本思路还是深度遍历，这种两个树的，就细心点考虑一些不同的情况组合就行，并且这里涉及到构建一颗新树，
+  一般这种情况都是需要递归函数返回当前节点，然后上一层来拼接左右孩子节点就行。
+  
+深度递归返回左右子树结果，然后当前节点拼接左右子树结果获得最终结果：
+
+* [124. 二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
+  由于最大路径不一定是过root节点，因此这题需要设一个max来比较，并且递归过程中返回的和与max比较的还不太一样，
+  一个是左右子树结果如果大于0都相加，另一个则是选择其中一个并且大于0才相加。
+  
+* [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+  这题设置的返回值是该节点及其子节点是否包含p或者q节点，然后判断节点是否是最近公共祖先，
+  使用 (left && right) || ((node.val == p.val || node.val == q.val) && (left || right)) 这个条件，看着有的复杂，
+  但其实还好，记住吧。
+  
+* [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
+  注意二叉搜索树的性质是小于/大于左右所有节点，因此最好的方式是传递一个范围。
+  
+完全二叉树的性质利用：
+
+* [222. 完全二叉树的节点个数](https://leetcode-cn.com/problems/count-complete-tree-nodes/)
+  重复利用完全二叉树的性质，只有最后一层需要计算，那如何计算就利用二分 + 位运算，来判断底层那个点是否存在。
+  还有要注意的就是位运算的级别最低，一定要加括号。

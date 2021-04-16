@@ -419,9 +419,108 @@ public int searchInsert(int[] nums, int target) {
 }
 ```
 
-### 4.3 回溯法
+### 4.3 树
 
-### 4.4 动态规划
+树可以有多种数据结构，以及不同的表示方式，当然最常见的树的数据结构就是二叉树，最常见的表示方式便是包含值和孩子节点。
+
+```java
+class Node {
+    public int val;
+    public Node left;
+    public Node right; // 多叉树便是 List<Node> children;
+}
+```
+
+树的遍历方式就是常见的两种：深度遍历和广度遍历，然后深度遍历可以再分为前序遍历和后序遍历，如果是二叉树，再多一个中序遍历，
+然后深度遍历具体的实现有递归和迭代两种，递归方法比较简单，迭代方法可以借助栈来实现。
+
+深度遍历实现：
+
+```java
+// 前序遍历
+private void preorder(Node root, List<Integer> result) {
+    if (root != null) {
+        result.add(root.val);
+        for (int i = 0; i < root.children.size(); i++) {
+            preorder(root.children.get(i), result);
+        }
+    }
+}
+
+// 后序遍历
+private void postorder(Node root, List<Integer> result) {
+    if (root != null) {
+        for (int i = 0; i < root.children.size(); i++) {
+            postorder(root.children.get(i), result);
+        }
+        result.add(root.val);
+    }
+}
+
+// 二叉树中序遍历
+private void inorder(Node root, List<Integer> result) {
+    if (root != null) {
+        inorder(root.left, result);
+        result.add(root.val);
+        inorder(root.right, result);
+    }
+}
+```
+
+```java
+// 栈实现多叉树的前序遍历，后序只是访问顺序的区别, 二叉树则是children变成左右子树即可
+private void preorder(Node root, List<Integer> result) {
+        if (root != null) {
+            Stack<Node> stack = new Stack<>();
+            stack.push(root);
+            while(!stack.isEmpty()) {
+                Node node = stack.pop();
+                result.add(node.val);
+                for (int i = node.children.size() - 1; i >= 0; i--) { // 栈需要反着放
+                    stack.push(node.children.get(i));
+                }
+            }
+        }
+    }
+
+// TODO 二叉树中序遍历的实现
+```
+
+广度遍历实现：
+
+```java
+private void BFS(Node root, List<Integer> result) {
+    Queue<Node> queue = new LinkedList<>();
+    if(root != null) {
+        queue.offer(root);
+    }
+    while(!queue.isEmpty()) {
+        int size = queue.size();
+        for (int i = 0; i < size; i++) {
+            Node node = queue.poll();
+            result.add(node.val);
+            for (int i = 0; i < root.children.size(); i++) {
+                queue.offer(root.children.get(i));
+            }
+        }
+    }
+}
+```
+
+PS. （当树的表示方式包含了父节点，checkstyle内部有实现一个不借助栈的迭代方式。）
+
+二叉搜索树是一种常见的树数据结构，特定包括：
+
+* 左子树的所有节点一定不大于父节点，右子树的所有节点一定不小于父节点
+* 中序遍历得到数值的有序排列
+
+完全二叉树也是一种常见的数据结构，比如用来完成堆排序，特定包括：
+
+* 除了最底层节点可能没填满外，其余每层节点数都达到最大值
+
+### 4.4 回溯法
+
+### 4.5 动态规划
 
 本小节参考：https://github.com/labuladong/fucking-algorithm & 《算法导论》动态规划章节
 
@@ -599,7 +698,7 @@ public int searchInsert(int[] nums, int target) {
    * [旅行商问题（状压dp入门）](https://www.cnblogs.com/hhlya/p/13305987.html)
 * ... 更多类别参考[OI Wiki 动态规划](https://oi-wiki.org/dp/)
 
-### 4.5 并查集（union-find）算法
+### 4.6 并查集（union-find）算法
 
 本小节参考：https://github.com/labuladong/fucking-algorithm & 《算法4》UF算法部分
 
@@ -803,7 +902,7 @@ class UF {
 }
 ```
 
-### 4.6 图
+### 4.7 图
 
 所谓的图(Graph)可以表示为 G = (V, E)，其中集合V中的对象称作顶点(Vertex)，
 而集合E中的每一元素都对应于V中某一对顶点⎯⎯说明这两个顶点之间存在某种关系⎯⎯称作边(Edge)。
@@ -917,7 +1016,7 @@ public void BFSTraverse(Graph g) {
 （[转换算法](https://www.geeksforgeeks.org/construct-a-binary-tree-from-parent-array-representation/)），
 其实就是一个图的遍历算法的应用，当然有有一些细节的调整，比如访问标记数组换成用哈希表的有无该节点关键字来表示。
 
-### 4.7 排序算法
+### 4.8 排序算法
 本小节参考：https://github.com/hustcc/JS-Sorting-Algorithm && 邓老师的数据结构第五章优先队列
 
 ![排序算法比较](https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/sort.png)
