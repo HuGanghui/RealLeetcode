@@ -105,6 +105,9 @@ commit 相关前缀含义：
 ```java
     // list 默认排序方式
     Collections.sort(list);
+    
+    // 同样的，继承了List接口的也有内置排序方法可以使用。
+    Collections.sort(list, (o1, o2) -> {return o1.val - o2.val;});
 
 ```
 
