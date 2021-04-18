@@ -118,6 +118,20 @@ commit 相关前缀含义：
 
 ```
 
+#### Arrays 
+
+```java
+    // 数组的内置排序方式，默认从小到大
+    int[] arrays = new int[n];
+    Arrays.sort(arrays);
+    
+    // 可以自己配置比较规则，这里对二维数组尤其有用
+    int[][] tasks = new int[n][m];
+    // 通过lambda表达式来进行比较规则的设置
+    Arrays.sort(tasks, (x,y)->x[0]-y[0]);
+    
+```
+
 ### 4.1 栈和队列
 
 #### 单调队列/栈 
