@@ -32,6 +32,9 @@ most of my solutions of algorithm problems in leetcode.
 
 ## 3. Toolbox & Websites
 
+* [BZOJ离线题库](https://acm.taifua.com/bzoj/index.html)
+  有不少ACM的原题题目
+
 ## 4. Solutions 
 
 通过打力扣2021年第一场周赛（222th）以及赛后观看[B站刷题UP主-喂你脚下有坑](https://www.bilibili.com/video/BV1164y1Z7WL?p=2)
@@ -1056,3 +1059,5 @@ public void BFSTraverse(Graph g) {
 * `<<` 左移运算符
 * `>>` 右移运算符
 * `>>>` 无符号右移运算符
+
+### 4.10 贪心算法
