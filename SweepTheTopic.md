@@ -583,4 +583,11 @@ Median:
   
 * [2021.4.18 腾讯笔试 最少游戏惩罚](./src/main/java/SimulationTopic/MinPunitiveScore.java)
   特别的，这题需要反着，从后往前遍历curtime。
+ 
+### 设计数据结构题
+
+#### 树数据结构
+
+* [208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
+  前缀树，空间换时间，内置Trie[] 和 isEnd。
   
