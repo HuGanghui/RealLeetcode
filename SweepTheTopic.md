@@ -591,3 +591,19 @@ Median:
 * [208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
   前缀树，空间换时间，内置Trie[] 和 isEnd。
   
+#### 数据流结构
+
+  其实这三题都是涉及到排序的方法选择，中位数和第k大其实比较类似，都是可以有暴力方法、二分查找（选择排序）以及
+  堆排序来解决。堆排序都是最优解。MK平均数多了滑窗的概念，然后概念上有三段，因此比较有技巧的使用四个堆来维护（
+  其中中间堆需要一个大顶堆，一个小顶堆。）
+
+* [295. 数据流的中位数](https://leetcode-cn.com/problems/find-median-from-data-stream/)
+  这题有两个思考题：
+  1. 如果数据流中所有整数都在 0 到 100 范围内，你将如何优化你的算法？
+  2. 如果数据流中 99% 的整数都在 0 到 100 范围内，你将如何优化你的算法？
+  感觉需要了解9大排序算法后面的几种，然后来解答这个问题。
+
+* [703. 数据流中的第 K 大元素](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
+
+* [1825. 求出 MK 平均值](https://leetcode-cn.com/problems/finding-mk-average/)
+  
