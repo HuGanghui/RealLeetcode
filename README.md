@@ -1074,3 +1074,20 @@ public void BFSTraverse(Graph g) {
 * `>>>` 无符号右移运算符
 
 ### 4.10 贪心算法
+
+### 4.11 双指针技巧
+本小节参考：labuladong 的[NSum](https://mp.weixin.qq.com/s/fSyJVvggxHq28a0SdmZm6Q) 
+和 [双指针技巧汇总](https://mp.weixin.qq.com/s/yLc7-CZdti8gEMGWhd0JTg)
+
+双指针还可以分为两类：
+* 快慢指针
+  解决链表问题，比如判断是否有环
+* 左右指针
+  主要解决数组、字符串问题，比如二分查找
+
+左右指针常用算法
+* 二分查找 (要求有序)
+* 两数之和 (要求有序)
+* 反转数组
+* 滑动窗口
+  滑动窗口可以解决一大类子字符串匹配的问题，但是稍微复杂些。

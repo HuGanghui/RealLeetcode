@@ -586,6 +586,9 @@ Median:
  
 ### 设计数据结构题
 
+* [170. 两数之和 III - 数据结构设计 Easy](https://leetcode-cn.com/problems/two-sum-iii-data-structure-design/)
+  这题给了一个很好的范例就是侧重优化哪个API，以查为主还是还是以写为主。
+
 #### 树数据结构
 
 * [208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
@@ -607,3 +610,19 @@ Median:
 
 * [1825. 求出 MK 平均值](https://leetcode-cn.com/problems/finding-mk-average/)
   
+  
+### 双指针技巧题
+
+#### 左右指针
+
+* [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
+  可以排序然后双指针解决，同时也可以哈希表来用空间换时间。
+  
+* [653. 两数之和 IV - 输入 BST](https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/)
+  本质还是TwoSum问题，并且BST中序天然有序，自然双指针就行，还不用去重，有一个OK就行，更简单些。
+
+* [15. 三数之和 Median](https://leetcode-cn.com/problems/3sum/)
+
+* [18. 四数之和 Median](https://leetcode-cn.com/problems/4sum/)
+  上述两题都是NSum的特例，其核心是TwoSum，然后递归处理就行，但是其中值得注意的是
+  对于去重的要求，就需要排序了，排序然后跳过，是一个基本的方式。
