@@ -138,6 +138,30 @@ commit 相关前缀含义：
     
 ```
 
+#### String和Char
+
+值得注意的是我们喜欢常用的`char[i] - 'a'` 或者 `chars[i] - '0'` 来获取直接的数值是OK的，因为
+这是char类型之间的计算，但是如果想通过 `'a' + 1` 得到 `'b'` 是不行的，因为这是涉及到char和int类型
+直接的计算，会自动转换为int类型，因此需要有一个强制转换。
+```java
+    // 得到String中某一指定位置的char
+    String.charAt(index);
+
+    // 得到将包含整个String的char数组
+    String.toCharArray()
+    
+    // 单个char转换为String
+    String s = String.valueOf('c');
+    
+    //将一个char数组转换成String
+    String s = String.valueOf(new char[]{'c'});
+    
+    // char与int类型计算，需要强制转换
+    char incre = (char) (chars[i] - '0');
+    chars[i] = (char)(chars[i-1] + incre);
+
+```
+
 ### 4.1 栈和队列
 
 #### 单调队列/栈 
