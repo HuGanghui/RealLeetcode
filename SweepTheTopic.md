@@ -626,3 +626,14 @@ Median:
 * [18. 四数之和 Median](https://leetcode-cn.com/problems/4sum/)
   上述两题都是NSum的特例，其核心是TwoSum，然后递归处理就行，但是其中值得注意的是
   对于去重的要求，就需要排序了，排序然后跳过，是一个基本的方式。
+  
+### 回溯
+
+#### 字符串切分
+
+关于回溯字符串分解转换为整数，越界问题必然要考虑，优先用long来存储，同时long也可以越界，那
+可以尝试用异常处理来捕获同时根据题意做相应的处理。
+
+* [842. 将数组拆分成斐波那契序列](https://leetcode-cn.com/problems/split-array-into-fibonacci-sequence/)
+
+* [5747. 将字符串拆分为递减的连续值](https://leetcode-cn.com/problems/splitting-a-string-into-descending-consecutive-values/)
