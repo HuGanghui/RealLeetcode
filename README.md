@@ -61,8 +61,32 @@ commit 相关前缀含义：
  
 [SweepTheTopic](./SweepTheTopic.md)：按模块扫题，快速归纳同模块的不同考察方式以及检验当前模块的自我掌握情况  
 
+### 良好的编码习惯
+
+1. 需要多次复用的值，存下来为好
+   * 比如需要频繁使用s.length()进行比较或者其他操作，应当缓存下来，
+     因为你不确定其API的时间复杂度是多少，如果是O(N),就不太好。
 
 ### 4.0 Java内置数据结构常用API
+
+#### == 和 equals
+
+java中的数据类型，可分为两类：
+
+1.基本数据类型，也称原始数据类型。byte,short,char,int,long,float,double,boolean 
+  他们之间的比较，应用双等号（==）,比较的是他们的值。
+  
+2.复合数据类型(类) 
+  * 当他们用（==）进行比较的时候，比较的是他们在内存中的存放地址，所以，除非是同一个new出来的对象，他们的比较后的结果为true，
+    否则比较后结果为false。
+  * JAVA当中所有的类都是继承于Object这个基类的，在Object中的基类中定义了一个equals的方法，这个方法的初始行为是比较对象的内存地址，
+    但在一些类库当中这个方法被覆盖掉了，如String,Integer,Date在这些类当中equals有其自身的实现，而不再是比较类在堆内存中的存放地址了。
+    对于复合数据类型之间进行equals比较，在没有覆写equals方法的情况下，他们之间的比较还是基于他们在内存中的存放位置的地址值的，
+    因为Object的equals方法也是用双等号（==）进行比较的，所以比较后的结果跟双等号（==）的结果相同。
+    
+    这里有个实际使用场景就是Map中只能使用Integer，然后比较当数据量不大的情况，使用 == 比较Map中的Integer是没有问题的，
+    这是因为虽然 == 要比较地址，但是Java有缓存机制，数值范围为-128到127，在此范围内直接返回缓存值，超过该范围就会new一个对象，
+    因此平时使用没有问题，却容易忽视这个问题。对象还是要使用equals安全。
 
 #### Map 
 
@@ -1100,7 +1124,7 @@ public void BFSTraverse(Graph g) {
 ### 4.10 贪心算法
 
 ### 4.11 双指针技巧
-本小节参考：labuladong 的[NSum](https://mp.weixin.qq.com/s/fSyJVvggxHq28a0SdmZm6Q) 
+本小节参考：labuladong的[NSum](https://mp.weixin.qq.com/s/fSyJVvggxHq28a0SdmZm6Q) 
 和 [双指针技巧汇总](https://mp.weixin.qq.com/s/yLc7-CZdti8gEMGWhd0JTg)
 
 双指针还可以分为两类：
@@ -1115,3 +1139,20 @@ public void BFSTraverse(Graph g) {
 * 反转数组
 * 滑动窗口
   滑动窗口可以解决一大类子字符串匹配的问题，但是稍微复杂些。
+  参考labuladong的[滑动窗口](https://mp.weixin.qq.com/s/ioKXTMZufDECBUwRRp3zaA)
+  大体的逻辑参考框架：
+```java
+int left = 0, right = 0;
+while (right < s.size()) {
+    // 增大窗口
+    window.add(s[right]);
+    right++;  
+    while (window needs shrink) {
+        // 缩小窗口
+        window.remove(s[left]);
+        left++;
+    }
+}
+```
+这个算法技巧的时间复杂度是O(N),比一般的字符串暴力算法要高效得多。
+
