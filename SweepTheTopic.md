@@ -629,8 +629,31 @@ Median:
   
 #### 滑动窗口
 滑动窗口可以解决一大类子字符串匹配的问题，但是稍微复杂些。也是左右指针中的集大成者了。
+滑动窗口由于其两端增减的性质，适合解决的题目大多是子字符串类型的，并且不考虑其中的顺序，只要满足
+条件就行，比如常用的need的map，一般不会说考虑排列顺序的。
 
 * [76. 最小覆盖子串 Hard](https://leetcode-cn.com/problems/minimum-window-substring/)
+  这题要求的是子串的长度，虽然中间会包含很多无用的字符，但是没有要求所谓的返回字典序最小这种需要内部再删除排序那种，
+  所以还是可以用滑动窗口来解决。
+
+* [438. 找到字符串中所有字母异位词 Median](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
+
+* [567. 字符串的排列 Median](https://leetcode-cn.com/problems/permutation-in-string/)
+  异构词只是排列的换个名字罢了，还是找子串，并且子串长度大小都固定好了，缩减时机其实也就是当满足子串长度时
+  
+* [3. 无重复字符的最长子串 Median](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
+  这个稍微新意点，匹配条件，不过也是可以滑动窗口，缩减时机就是出现了重复字符，那需要缩减到没有为止。
+  
+* [32. 最长有效括号 Hard](https://leetcode-cn.com/problems/longest-valid-parentheses/)
+  这题也是最长子串，当然先到可以用滑动窗口，结合有效括号的性质，缩减时机遇到左括号数量小于右括号数量时，
+  缩减则是把之前的积累的左右括号数量全部归零，并让left直接移动到right处。
+  还有就是，如果只在left_count == right_count时记录，对于`(()`这种情况，就无法记录到，因此解决方案就是
+  反过来再进行一遍取最大值，这个应该是利用了有效括号的对称性，来弥补这种情况。
+  
+* [30. 串联所有单词的子串 Hard](https://leetcode-cn.com/problems/substring-with-concatenation-of-all-words/)
+  这题从题目看和之前找到匹配子串是非常相似的，因此很直观的尝试使用之前的滑动窗口的思路来完成。
+  但是有细微的差别，并且有个关键条件就是word长度均相等，其实就可以让我们以String为单元做一些事，因为之前一直以char为单元，
+  但其实只要word长度一直，就可以以String为单元。
   
 ### 回溯
 
