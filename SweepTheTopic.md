@@ -613,6 +613,73 @@ Median:
   
 ### 双指针技巧题
 
+#### 快慢指针
+
+判断链表是否有环、环的入口、获取第k个节点等
+
+* [141. 环形链表 Easy](https://leetcode-cn.com/problems/linked-list-cycle/)
+
+* [142. 环形链表 II Median](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+
+* [剑指 Offer 22. 链表中倒数第k个节点 Easy](https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/)
+
+* [876. 链表的中间结点 Easy](https://leetcode-cn.com/problems/middle-of-the-linked-list/)
+
+移除数组、链表中的重复元素的各种变形，有几点值得总结的：
+
+
+* [26. 删除有序数组中的重复项 Easy](https://leetcode-cn.com/problems/remove-linked-list-elements/)
+  slow-fast，fast探路来遍历整个数组，发现不重复的元素就让slow走一步，这样最后slow就是指向不重复数组的结尾。
+    
+* [80. 删除有序数组中的重复项 II Median](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
+  这题要求最多保留2两位，其实有个通解，保留k位，那就前k位其实都可以保留，然后比较的是slow-k和fast
+  
+* [27. 移除元素 Easy](https://leetcode-cn.com/problems/remove-element/)
+
+* [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/)
+  换个说法，不就是移除元素0，然后放到最后呗。
+
+如果头节点可能被删除，那需要引入一个哑元节点，然后不一定快慢指针，
+用一个指针也行，然后判断ptr.next，这种最后一个节点会被判断到，只有第一个ptr没有被判断到，也就是哑元节点。
+
+```java
+while (ptr.next != null) {
+    if (ptr.next.val == val) {
+        ptr.next = ptr.next.next;
+    } else {
+        ptr = ptr.next; 
+    }
+}
+```
+
+* [83. 删除排序链表中的重复元素 Easy](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
+  这种方式都是保留了重复元素的第一个
+  
+* [82. 删除排序链表中的重复元素 II Median](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/)
+  这题要求重复的都删去，因此头节点可能被删除，所以要有哑元节点，然后通过两个连续的比较来判断
+  删除与否，通过while删除干净。
+
+```java
+ListNode dummy = new ListNode(-1);
+dummy.next = head;
+ListNode first = dummy;
+while(first.next != null && first.next.next != null) {
+    if (first.next.val == first.next.next.val) {
+        int x = first.next.val;
+        while(first.next != null && first.next.val == x) {
+            first.next = first.next.next;
+        }
+    } else {
+        first = first.next;
+    }
+}
+return dummy.next;
+```
+
+* [面试题 02.01. 移除重复节点 Easy](https://leetcode-cn.com/problems/remove-duplicate-node-lcci/)
+  这题的区别在于无序，因此需要利用哈希表，并且需要删除因此用first.next来进行判断。
+
+
 #### 左右指针
 
 * [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
