@@ -186,6 +186,17 @@ java中的数据类型，可分为两类：
 
 ```
 
+#### Comparable and Comparator接口
+
+让类继承Comparable接口，重写compareTo方法，从而可以使类原生支持排序，Comparator接口则是外部的一个排序规则，
+如果某个类原本没有继承Comparable接口或者需要新的排序规则，可以使用这个接口。
+
+```java
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+```
+
 ### 4.1 栈和队列
 
 #### 单调队列/栈 
