@@ -732,3 +732,31 @@ return dummy.next;
 * [842. 将数组拆分成斐波那契序列](https://leetcode-cn.com/problems/split-array-into-fibonacci-sequence/)
 
 * [5747. 将字符串拆分为递减的连续值](https://leetcode-cn.com/problems/splitting-a-string-into-descending-consecutive-values/)
+
+### 链表
+
+链表题常用的技巧：
+
+* 建哑元节点，尤其当头节点不确定或者也会改变的时候
+  很多题目都用到了，基本可以无脑建一个先
+  
+* 尾部节点要注意可能需要设置为null的情况，防止循环链表
+  比如反转链表II和分区链表都需要设置
+
+#### 反转链表/断链接链
+
+反转链表对应迭代和递归算法都有一个通用的解法，都值得掌握。
+
+* [206. 反转链表 Easy](https://leetcode-cn.com/problems/reverse-linked-list/)
+
+* [92. 反转链表 II Median](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+
+* [61. 旋转链表 Median](https://leetcode-cn.com/problems/rotate-list/)
+
+#### 合并/分离链表
+
+* [21. 合并两个有序链表 Easy](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+
+* [86. 分隔链表 Median](https://leetcode-cn.com/problems/partition-list/)
+
+TODO：还有 k个一组反转链表和判断回文链表没看
