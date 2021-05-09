@@ -27,6 +27,10 @@ most of my solutions of algorithm problems in leetcode.
 * [背包问题九讲](https://github.com/tianyicui/pack/blob/master/V2.pdf)
   从0-1背包开始，总结了绝大部分的背包问题的变种，很多问题其本质就是背包问题，因此
   背包问题值得学习。
+  
+* [LeetCode Cookbook](https://github.com/YS-THX/leetcode)
+  用Go语言解决了LeetCode中的绝大部分题目，并且做了很好的分类和梳理，并提供了一定的
+  模板值得一看，尤其二分查找。
 
 ## 2. Courses/Seminars/Videos
 
