@@ -243,7 +243,90 @@ Hard:
               return cnt <= m; // 最大值最小是要<=，最小值最大是>=
           }
     ```
-   
+
+#### 7. 旋转数组系列：
+旋转系列的核心在于如何利用其特点，来使用二分查找。旋转的特点在于其大部分区间还是有序的，因此
+81. 搜索旋转排序数组 II 和 153. 寻找旋转排序数组中的最小值 的解法核心都在于通过和数组的left或者
+right进行比较，来判断出哪部分是有序的，然后如果是求最小，那就一定在无序那部分，如果是寻找target是否存在，
+那就在有序的那部分好比较，从而判断是否存在。
+
+* [153. 寻找旋转排序数组中的最小值 Median](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
+  旋转题基本也都是可以使用二分，但是相比之前总结的二分查找的模板，有一定的出入，需要先挖掘旋转后数组的特点，然后重复利用。
+  这题难度在于：1. 如何进行比较，从而判断使用左边还是右边 2. 特殊情况的处理，当mid与right相等。
+
+```java
+public int findMin(int[] numbers) {
+        return binarySearch(numbers);
+    }
+
+private int binarySearch(int[] array) {
+    int left = 0;
+    int right = array.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        // 小于 说明是右边是递增的，因此在左边找，并且mid可能是最小值，不能跳过
+        if (array[mid] < array[right]) {
+            right = mid;
+        // 大于 说明左边是整体大的那部分，因此最小值在右边，且mid不可能是最小值
+        } else if (array[mid] > array[right]) {
+            left = mid + 1;
+        /** 等于， 有一种情况就是类似凹字，这种：那这种情况下，我们只能排除right，因为即便它是，也有mid可以代替
+        *    * * mid     * r *
+        *          min *
+        */  
+        } else {
+            right = right - 1;
+        }
+    }
+    // 最后left==right相等的情况，right会-1，因此left会是最后的答案
+    return array[left];
+}
+```
+
+* [33. 搜索旋转排序数组 Median](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
+  这题是要求在旋转数组中寻找给定的target值，这题的思路是通过每次二分后有序的那部分来
+  进行比较，通过mid 和 left 来的大小来判断哪left-mid mid-right 哪部分是有序的，然后
+  在有序的那部分进行判断，如果在有序那部分的范围内则进一步缩小范围，否则就转到另外一部分去。
+  利用有序部分的思想还是值得借鉴的。   
+
+* [81. 搜索旋转排序数组 II Median](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
+  和上面的区别仅仅在于这个这里会有相同元素，因此这题其实是通解，主要就在于对于凹字的情况，通过left/right移动一个来化解
+  掉这种情况。
+  
+```java
+public boolean search(int[] nums, int target) {
+    int left = 0;
+    int right = nums.length -1;
+    int result = -1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target) {
+            result = mid;
+            break;
+        }
+        
+        if (nums[mid] == nums[left]) {
+            left += 1;
+        } else if (nums[mid] > nums[left]) {
+            if (nums[mid] > target && nums[left] <= target) {
+                right = mid - 1;
+            }
+            else {
+                left = mid + 1;
+            }
+        } else {
+            if (nums[mid] < target && nums[right] >= target) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+    }
+    return result != -1;
+}
+```
+
 ### 动态规划（Dynamic Programming）
 
 #### 基本框架：
