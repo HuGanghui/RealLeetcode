@@ -812,6 +812,11 @@ return dummy.next;
   
 ### 回溯
 
+#### 全排列
+
+* [剑指 Offer 38. 字符串的排列 Median](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
+  核心在于横向和纵向上的去重方式。
+
 #### 字符串切分
 
 关于回溯字符串分解转换为整数，越界问题必然要考虑，优先用long来存储，同时long也可以越界，那
