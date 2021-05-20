@@ -139,7 +139,10 @@ java中的数据类型，可分为两类：
     
     // 同样的，继承了List接口的也有内置排序方法可以使用。
     Collections.sort(list, (o1, o2) -> {return o1.val - o2.val;});
-
+    
+    // list to array 
+    List<String> result = new ArrayList<>();
+    result.toArray(new String[result.size()]);
 ```
 
 #### PriorityQueue
