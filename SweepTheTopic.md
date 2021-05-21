@@ -812,10 +812,81 @@ return dummy.next;
   
 ### 回溯
 
+#### 组合问题
+N个数里按一定的规则找出k个数的集合
+
+基本思路是 **每次从集合中选取元素，可选择的范围随着选择的进行而收缩，调整可选择的范围**
+
+子集问题回溯函数的参数都需要有一个startIndex，来控制横向遍历范围
+
+子集需要随着递归的深入，横向遍历的选择范围是随之而减小的。(但也有特例，当可以无限重复取，就不用缩小范围)
+
+同时如果需要去重，则加上**排列+used数组**，其它的方式都无法去重干净。
+
+![子集回溯过程](https://camo.githubusercontent.com/625a45f9e4f060f5fe958b7563bc2d9738695da2a09d8228844e27ced2541a91/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230313132333139353332383937362e706e67)
+
+* [77. 组合 Median](https://leetcode-cn.com/problems/combinations/)
+  典型的组合问题，基本就是按照组合的套路来，不过针对这题有个剪枝操作，当后续元素个数加上已在temp中
+  的个数小于k个，便可以剪枝。
+  
+* [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/)
+  同样是n个选择k个的组合，但是同时再加上一个额外的条件就是需要为n，基本差别不大。并且不需要
+  考虑去重的问题。
+  
+* [39. 组合总和 Median](https://leetcode-cn.com/problems/combination-sum/)
+  这题也是一个组合，其实也可说是子集，需要满足的条件是和为target，但是这题有个特殊的点在于
+  candidates 中的数字可以无限制重复被选取，那如何满足这点，就通过在每个纵向上，其横向选择范围保存不变。
+  并且这题不包含重复元素，因此少了个去重的操作。
+
+* [40. 组合总和 II Median](https://leetcode-cn.com/problems/combination-sum-ii/)
+  这题相比上题，难度在有重复元素需要处理，这需要我们进行树层上的去重，而在树枝上，遇到之前碰到
+  的数字，是没关系的。关于需要去重的组合问题的套路便是：排列+used数组。
+  
+```java
+// 利用used进行数层去重
+if (i > 0 && (candidates[i-1] == candidates[i] && used[i-1] == false)) {
+    continue;
+}
+```
+
+#### 子集问题
+子集问题其实和组合很类似，就是在其基础上需要树枝方向每个都需要保存结果而已。
+
+基本套路都是回溯函数的参数都需要有一个startIndex，来控制横向遍历范围
+子集需要随着递归的深入，横向遍历的选择范围是随之而减小的。
+
+但是树枝方向每个都需要保存结果而已。
+
+同时如果需要去重，则加上**排列+used数组**，其它的方式都无法去重干净。
+
+* [78. 子集](https://leetcode-cn.com/problems/subsets/submissions/)
+
+* [90. 子集 II](https://leetcode-cn.com/problems/subsets-ii/)
+  这题需要去重，就是套路 排列+used数组
+  
+* [491. 递增子序列](https://leetcode-cn.com/problems/increasing-subsequences/)
+  这题本质就是子集问题，但是要满足的条件是递增，并且元素大于2，然后由于要原始有序，因此特别点
+  在于其去重方式是用哈希表就行，**因为哈希表树层去除虽然不干净，但是结合递增的要求就可以保证没有
+  重复的了，比较特别。**
+```java
+// 数层去重的另外一种方式，使用哈希表，但是针对子集/组合问题，需要加入额外条件才能保证干净去重
+Set<Integer> set = new HashSet<>();
+```
+
 #### 全排列
 
+排序的和之前的组合，子集问题最大的不同就是[1,2] 和[2,1]是两个集合，因此排序不能随着递归的深入，横向遍历的选择范围是随之而减小的，
+而是每个递归的遍历范围是一样的，**也就不需要startIndex这个参数，但是这样天生需要used来明确之前已经有哪些元素使用过了。**
+
+并且，如果还需要数层去重，那就是用哈希表来处理了。
+
+* [46. 全排列](https://leetcode-cn.com/problems/permutations/)
+
+* [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)
+  这就需要去重，这里去重方式有两种，一种就是哈希，一种就利用排序+used的方式
+
 * [剑指 Offer 38. 字符串的排列 Median](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
-  核心在于横向和纵向上的去重方式。
+  核心在于横向上的去重方式，就是全排列II的字符串版本。
 
 #### 字符串切分
 
@@ -825,6 +896,15 @@ return dummy.next;
 * [842. 将数组拆分成斐波那契序列](https://leetcode-cn.com/problems/split-array-into-fibonacci-sequence/)
 
 * [5747. 将字符串拆分为递减的连续值](https://leetcode-cn.com/problems/splitting-a-string-into-descending-consecutive-values/)
+
+#### 二维回溯问题
+所谓的二维回溯问题，其实就是形式上给了一个二维的图形/棋盘，然后需要回溯穷举所有的可行解，
+但是其实这些问题看上去是二维的，基本上可以转换为一维的情况去做，也就是横向和纵向两个方向，只是相对代码量多了些，然后多了
+一个转换的过程而已。
+
+* [51. N 皇后 Hard](https://leetcode-cn.com/problems/n-queens/)
+  看似二维，其实也就是横向每行的不同位置，纵向为不同行，然后改进复杂的点在于 1.isValid的代码量稍微多了些， 2.Java对字符串
+  的支持不够，需要先利用char[]数组来处理，然后最后转换为String。
 
 ### 链表
 
