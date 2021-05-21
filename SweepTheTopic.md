@@ -933,3 +933,25 @@ Set<Integer> set = new HashSet<>();
 * [86. 分隔链表 Median](https://leetcode-cn.com/problems/partition-list/)
 
 TODO：还有 k个一组反转链表和判断回文链表没看
+
+### 模拟题
+
+#### 按顺序打印/生成矩阵
+基本逻辑就是明确好访问顺序，然后进行打印还是生成操作都是类似的，
+顺时针打印矩阵提供了一个很好的按层访问方法：
+这里使用的方法题解的按层模拟，依次通过：
+
+1.（top, left）-> (top, right）
+2. (top + 1, right) -> (bottom, right)
+3. 如果 left < right && top < bottom，则遍历从右到左遍历下侧元素，在从下到上遍历左侧元素
+   (bottom, right - 1) -> (bottom, left+1)
+   (bottom, left) -> (top + 1, left)
+遍历完成后进行 left top ++ right bottom --，接着继续遍历。
+
+后续即便是逆时针，或者(bottom, right)开始，都是类似的可以仿照的。
+
+* [剑指 Offer 29. 顺时针打印矩阵 Easy](https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/)
+
+* [59. 螺旋矩阵 II Median](https://leetcode-cn.com/problems/spiral-matrix-ii/)
+
+TODO：更难的 885. 螺旋矩阵 III，https://leetcode-cn.com/problems/spiral-matrix-iii/
