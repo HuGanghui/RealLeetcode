@@ -66,4 +66,14 @@ public class SortTest {
             assertEquals(expected[i], iDatas[i]);
         }
     }
+
+    @Test
+    public void CountingSortTest() throws Exception {
+        int [] iDatas = new int[] {1, 3, 2, 5, 4};
+        CountingSort countingSort = new CountingSort();
+        countingSort.sort(iDatas);
+        for (int i = 0; i< expected.length; i++) {
+            assertEquals(expected[i], iDatas[i]);
+        }
+    }
 }

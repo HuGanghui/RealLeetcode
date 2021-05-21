@@ -1148,7 +1148,24 @@ public void BFSTraverse(Graph g) {
 其实就是一个图的遍历算法的应用，当然有有一些细节的调整，比如访问标记数组换成用哈希表的有无该节点关键字来表示。
 
 ### 4.8 排序算法
-本小节参考：https://github.com/hustcc/JS-Sorting-Algorithm && 邓老师的数据结构第五章优先队列
+本小节参考：https://github.com/hustcc/JS-Sorting-Algorithm && 邓老师的数据结构第五章优先队列 && 
+          https://zhuanlan.zhihu.com/p/34894768
+
+排序算法大体上可以分为两类：比较和非比较
+
+* 比较算法：比较算法适合各种规模的数据，也不在乎数据分布
+    * 冒泡排序
+    * 选择排序
+    * 插入排序
+    * 快速排序
+    * 归并排序
+    * 堆排序
+* 非比较算法：时间复杂度较低，但是前提是对数据分布有一定的要求
+    * 计数排序
+    * 桶排序
+    * 基数排序
+
+TODO：还差桶排序和基数排序的实现    
 
 ![排序算法比较](https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/sort.png)
 
