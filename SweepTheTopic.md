@@ -810,6 +810,9 @@ return dummy.next;
   但是有细微的差别，并且有个关键条件就是word长度均相等，其实就可以让我们以String为单元做一些事，因为之前一直以char为单元，
   但其实只要word长度一直，就可以以String为单元。
   
+* [剑指 Offer 57 - II. 和为s的连续正数序列 Easy](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
+  这是利用滑动窗口解决连续数字和的问题，目前唯一一道非字符串的滑动窗口题，不过连续数字和为target确实适合滑动窗口。  
+  
 ### 回溯
 
 #### 组合问题
