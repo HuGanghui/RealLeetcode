@@ -443,6 +443,14 @@ Easy:
 * [303. 区域和检索 - 数组不可变](https://leetcode-cn.com/problems/range-sum-query-immutable/)
   简单一维前缀和递推公式：$dp[i] = dp[i-1] + nums[i]$，$dp[i]$表示从0-i的所有元素和，
   一次O(n)时间复杂度的计算，可以保证后续O(1)时间复杂度获取任何两个索引下标之间的元素和。
+
+**约瑟夫环问题** 
+ 
+也是利用递推公式来解决
+
+* [剑指 Offer 62. 圆圈中最后剩下的数字](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
+
+* [1823. 找出游戏的获胜者 Median](https://leetcode-cn.com/problems/find-the-winner-of-the-circular-game/)
   
 #### 2. 数组求和转换
 
