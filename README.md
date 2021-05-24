@@ -1225,3 +1225,88 @@ while (right < s.size()) {
 
 ### 4.12 链表相关操作
 
+### 4.13 差分数组
+本小结主要参考：labuladong的[差分数组](https://mp.weixin.qq.com/s/9L6lz0XDZ9gi-d_iPrSs8Q)
+
+差分数组和前缀和都是频繁涉及到数组区间操作时，可以考虑到数据结构/算法技巧。
+
+* 前缀和
+  主要适用的场景是原始数组不会被修改的情况下，频繁查询某个区间的累加和。
+```java
+class PrefixSum {
+    // 前缀和数组
+    private int[] prefix;
+
+    /* 输入一个数组，构造前缀和 */
+    public PrefixSum(int[] nums) {
+        prefix = new int[nums.length + 1];
+        // 计算 nums 的累加和
+        for (int i = 1; i < prefix.length; i++) {
+            prefix[i] = prefix[i - 1] + nums[i - 1];
+        }
+    }
+
+    /* 查询闭区间 [i, j] 的累加和 */
+    public int query(int i, int j) {
+        return prefix[j + 1] - prefix[i];
+    }
+}
+```
+* 差分数组
+  主要适用场景是频繁对原始数组的某个区间的元素进行增减。
+
+```java
+int[] diff = new int[nums.length];
+// 构造差分数组
+diff[0] = nums[0];
+for (int i = 1; i < nums.length; i++) {
+    diff[i] = nums[i] - nums[i - 1];
+}
+
+int[] res = new int[diff.length];
+// 根据差分数组构造结果数组
+res[0] = diff[0];
+for (int i = 1; i < diff.length; i++) {
+    res[i] = res[i - 1] + diff[i];
+}
+```
+这样构造差分数组diff，就可以快速进行区间增减的操作，如果你想对区间nums`[i..j]`的元素全部加 3，
+那么只需要让`diff[i] += 3`，然后再让`diff[j+1] -= 3`即可。
+
+```java
+class Difference {
+    // 差分数组
+    private int[] diff;
+
+    public Difference(int[] nums) {
+        assert nums.length > 0;
+        diff = new int[nums.length];
+        // 构造差分数组
+        diff[0] = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            diff[i] = nums[i] - nums[i - 1];
+        }
+    }
+
+    /* 给闭区间 [i,j] 增加 val（可以是负数）*/
+    public void increment(int i, int j, int val) {
+        diff[i] += val;
+        // 当j+1 >= diff.length时，说明是对nums[i]及以后的整个数组都进行修改，
+        // 那么就不需要再给diff数组减val了。
+        if (j + 1 < diff.length) {
+            diff[j + 1] -= val;
+        }
+    }
+
+    public int[] result() {
+        int[] res = new int[diff.length];
+        // 根据差分数组构造结果数组
+        res[0] = diff[0];
+        for (int i = 1; i < diff.length; i++) {
+            res[i] = res[i - 1] + diff[i];
+        }
+        return res;
+    }
+}
+```
+有人总结：单点更新，范围查询，就用线段树。范围更新，单独查询，就用差分数组。
