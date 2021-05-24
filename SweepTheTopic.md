@@ -711,7 +711,7 @@ Median:
 
 #### 快慢指针
 
-判断链表是否有环、环的入口、获取第k个节点等
+**判断链表是否有环、环的入口、获取第k个节点等：**
 
 * [141. 环形链表 Easy](https://leetcode-cn.com/problems/linked-list-cycle/)
 
@@ -721,8 +721,16 @@ Median:
 
 * [876. 链表的中间结点 Easy](https://leetcode-cn.com/problems/middle-of-the-linked-list/)
 
-移除数组、链表中的重复元素的各种变形，有几点值得总结的：
+**对数字进行按大小/奇偶进行前半部分后半部分的归类：**
 
+算是一个新的应用场景了
+
+* [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面 Easy](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
+
+* [快速排序](./src/main/java/SortTopic/ClassicSort/QuickSort.java)
+  快排中的partition部分，就是利用了快慢指针进行原地排序。
+
+**移除数组、链表中的重复元素的各种变形，有几点值得总结的：**
 
 * [26. 删除有序数组中的重复项 Easy](https://leetcode-cn.com/problems/remove-linked-list-elements/)
   slow-fast，fast探路来遍历整个数组，发现不重复的元素就让slow走一步，这样最后slow就是指向不重复数组的结尾。
