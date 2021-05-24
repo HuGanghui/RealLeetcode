@@ -327,6 +327,13 @@ public boolean search(int[] nums, int target) {
 }
 ```
 
+#### 8. 最值系列：
+都没有像 6.最大最小化问题那样，而是直接求最值，根据题意，很多时候，也是可以用二分来求解的。基本上想到二分了，就是框架+check函数。
+
+* [5764. 准时到达的列车最小时速 Median](https://leetcode-cn.com/problems/minimum-speed-to-arrive-on-time/)
+  这题是要求最小正整数时速，然后题目感觉就是非常典型的二分查找的类型，依次二分判断直到获得最小。
+  话不多说，直接二分框架，然后check根据题目进行编写即可。
+
 ### 动态规划（Dynamic Programming）
 
 #### 基本框架：
