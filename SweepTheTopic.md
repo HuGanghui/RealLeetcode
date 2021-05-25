@@ -685,6 +685,10 @@ Easy:
   基本思路：动态规划，时间复杂度O(n)，空间复杂度O(n)，递推公式就是：$dp[i] = dp[i-1] + dp[i-2] + dp[i-3]$，
           这题更值得关注的是三个很大的数的取模的顺序和方法的问题，当然可以进行状态压缩，因为只需要使用前三个数，使得空间复杂度到O(1)。
   优化思路：1.矩阵快速幂，参考[题解](https://leetcode-cn.com/problems/three-steps-problem-lcci/solution/mei-ri-suan-fa-day-80-suo-you-ren-du-hui-zuo-de-ru/)
+  
+* [剑指 Offer 46. 把数字翻译成字符串](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)
+  递推公式为：$dp[i] = dp[i-1] + dp[i-2] (i>=1, 10<=x<=25)$，本质上和爬楼梯是一样的，只不过需要注意base case 以及
+  一个trick，涉及到多个字符转换为数字的情况，还是String类型好用，有现成的`Integer.parseInt()`。        
 
 Median:
 
@@ -1153,3 +1157,9 @@ TODO：还有 k个一组反转链表和判断回文链表没看
 * [59. 螺旋矩阵 II Median](https://leetcode-cn.com/problems/spiral-matrix-ii/)
 
 TODO：更难的 885. 螺旋矩阵 III，https://leetcode-cn.com/problems/spiral-matrix-iii/
+
+### 智力/找规律题
+
+* [剑指 Offer 61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
+  先排序，然后遍历获得joker数量，同时保证没有重复元素，关键trick在于最后如果非joker的最大最小值小于5（要求的连续数量）
+  则说明可以是顺子。
