@@ -1090,7 +1090,15 @@ Set<Integer> set = new HashSet<>();
 * [51. N 皇后 Hard](https://leetcode-cn.com/problems/n-queens/)
   看似二维，其实也就是横向每行的不同位置，纵向为不同行，然后改进复杂的点在于 1.isValid的代码量稍微多了些， 2.Java对字符串
   的支持不够，需要先利用char[]数组来处理，然后最后转换为String。
-
+  
+* [37. 解数独 Hard](https://leetcode-cn.com/problems/sudoku-solver/)
+  基本套路就是回溯，但是有一下几点需要注意：
+  1. 数独是二维的，通过一个list来保存需要填充的位置，从而将二维降到一维
+  2. 关于char类型，涉及到int类型转换，都还是用 (char) ('0' + i)，这个和'0'做一个运算保险
+  3. 由于这题直接利用给的board作为答案，因此一定要在回溯后加上一个flag判断，否则得不到答案
+  
+N皇后和解数独其实使用的都是类似全排列的套路，只不过全排列中的used换成了isValid判断规则。
+  
 ### 链表
 
 链表题常用的技巧：

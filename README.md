@@ -190,7 +190,9 @@ java中的数据类型，可分为两类：
     // char与int类型计算，需要强制转换
     char incre = (char) (chars[i] - '0');
     chars[i] = (char)(chars[i-1] + incre);
-
+    
+    // 解数独那题遇到一个数值的问题，需要
+    // (char) ('0' + i) OK，(char)(i) 就不OK
 ```
 
 #### Comparable and Comparator接口
