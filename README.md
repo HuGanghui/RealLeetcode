@@ -187,6 +187,10 @@ java中的数据类型，可分为两类：
     //将一个char数组转换成String
     String s = String.valueOf(new char[]{'c'});
     
+    //将char数组的一部分转换为String
+    // 剑指 Offer 05. 替换空格 有用到这个技巧
+    String s = new String(array, 0, size);
+    
     // char与int类型计算，需要强制转换
     char incre = (char) (chars[i] - '0');
     chars[i] = (char)(chars[i-1] + incre);
