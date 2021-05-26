@@ -94,6 +94,14 @@ java中的数据类型，可分为两类：
 
 #### Map 
 
+Java中的Map有三个比较常用的实现类
+
+* HashMap 最常见的哈希表
+* LinkedHashMap 哈希+双向链表来维护key-value的插入顺序
+* TreeMap 哈希+红黑树来维护key-value的有序
+  * 自然排序 所有key实现Comparable接口
+  * 定制排序 创建TreeMap时，传入一个Comparator对象
+
 ```java
     // 常用的 get put replace 操作
     Map<Character, Integer> map = new HashMap<>();
