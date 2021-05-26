@@ -1048,13 +1048,36 @@ TODO：还差桶排序和基数排序的实现
 
 位运算常用技巧：
 
-* 依次判断x的每一位是否是1
+* 依次判断n的每一位是否是1
+
+```java
+int result = 0;
+for (int i = 0; i < 32; i++) {
+    if ((n & bit) != 0) {
+        result++;
+    }
+    bit <<= 1;
+}
+```
+
+* 找到n到最低位1
 
 ```java
 int bit = 1;
-while ((x & bit) == 0) {
+while ((n & bit) == 0) {
     bit <<= 1;
 }
+```    
+
+* 每次将n最右边的1变为0
+
+```java
+int res = 0;
+while(n != 0) {
+    res++;
+    n &= n - 1;
+}
+return res;
 ```
 
 ### 4.10 贪心算法
