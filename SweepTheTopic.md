@@ -58,27 +58,27 @@ public int pop_front() {
    因此只是我们需要在每次出队 + 入队后获取当前队列的最大值而已，本质上和队列最大值相同。同样维护额外的一个单调队列即可
 
 ```java
-for (int i = 0; i < nums.length; i++) {
-    if (i > (k-1)) {
-        // 先出队，判断是否与队首元素相等
-        if (nums[i - k] == queue.peekFirst()) {
-            queue.remove();
+for (int i = 0; i < n; i++) {
+    // 初始化还未到滑窗大小
+    if (i < k - 1) {
+        while (!deque.isEmpty() && nums[i] > deque.peekLast()) {
+            deque.removeLast();
+        }
+        deque.addLast(nums[i]);
+    } else {
+        if (i != k - 1) {
+            // 先出队，判断是否与队首元素相等
+            int removed = nums[i - k];
+            if (deque.peekFirst() == removed) {
+                deque.removeFirst();
+            }
         }
         // 然后按规则加入单调队列
-        while (!queue.isEmpty() && queue.peekLast() < nums[i]) {
-            queue.removeLast();
+        while (!deque.isEmpty() && nums[i] > deque.peekLast()) {
+            deque.removeLast();
         }
-        queue.addLast(nums[i]);
-        result[i - (k - 1)] = queue.peekFirst();
-    // 初始化达到滑窗大小
-    } else {
-        while (!queue.isEmpty() && queue.peekLast() < nums[i]) {
-            queue.removeLast();
-        }
-        queue.addLast(nums[i]);
-        if (i == k -1 ) {
-            result[0] = queue.peek();
-        }
+        deque.addLast(nums[i]);
+        result[i - k + 1] = deque.peekFirst();
     }
 }
 ```
