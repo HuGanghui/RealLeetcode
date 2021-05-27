@@ -1188,6 +1188,13 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   另外，这里设计到负指数的问题，当然可以变成正指数来做，但是需要注意的是，有越界的可能，
   因为int范围是-2^31 <= n <= 2^31-1，所以需要考虑越界问题。
   
+### 数组技巧题
+这边主要总结一些有一些看似简单，但是有小技巧trick的数组题
+
+* [88. 合并两个有序数组 Easy](https://leetcode-cn.com/problems/merge-sorted-array/)
+  这题看上去非常简单，但是关键在于如何原地完成合并，就一个trick，就是从大到小来合并，
+  这样就可以利用上nums1的充足的空间。
+  
 ### 智力/找规律题
 
 * [剑指 Offer 61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
