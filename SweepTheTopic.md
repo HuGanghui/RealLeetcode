@@ -1158,6 +1158,13 @@ TODO：还有 k个一组反转链表和判断回文链表没看
 
 TODO：更难的 885. 螺旋矩阵 III，https://leetcode-cn.com/problems/spiral-matrix-iii/
 
+#### 栈的模拟
+
+* [剑指 Offer 31. 栈的压入、弹出序列 Median](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)
+   首先有个结论需要知道，就是给定pushed 和 poped序列，则压入 / 弹出操作的顺序（即排列）是 唯一确定的。
+   因此验证的做法就是每次入栈后，比较栈首元素是否与当前poped的元素相同，如果相同则出栈，最后查看stack
+   中是否还有元素。
+   
 ### 位运算
 
 * [剑指 Offer 56 - I. 数组中数字出现的次数 Median](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
