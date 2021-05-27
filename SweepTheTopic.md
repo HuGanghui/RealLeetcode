@@ -1171,6 +1171,16 @@ TODO：更难的 885. 螺旋矩阵 III，https://leetcode-cn.com/problems/spiral
   这题变了一些，变成只有一个数字出现一次，其它都出现三次了，其实本质上还是去找位运算有啥规律，
   这题的每一位求和再除以3，就可以获得只出现一次那个，就通过这个方式去还原得到答案即可。  
 
+### DFSearch
+DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，所以这里总结一些看上去没有那么典型的，非上述那些类的DFS的应用
+
+* [剑指 Offer 16. 数值的整数次方](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/)
+  很明显可以通过DFS来减少时间复杂度，思想上其实很像DP，和Fib数列类似，虽然不是典型
+  的DP问题，但是有递推公式，并且有重复子问题，因此这里的DFS也可以说是带memo的自顶向下。
+  只不过这里没有显式的构建一个memo，而是知道重复计算何时出现，直接利用了。
+  另外，这里设计到负指数的问题，当然可以变成正指数来做，但是需要注意的是，有越界的可能，
+  因为int范围是-2^31 <= n <= 2^31-1，所以需要考虑越界问题。
+  
 ### 智力/找规律题
 
 * [剑指 Offer 61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
