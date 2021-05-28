@@ -1073,7 +1073,7 @@ Set<Integer> set = new HashSet<>();
 排序的和之前的组合，子集问题最大的不同就是[1,2] 和[2,1]是两个集合，因此排序不能随着递归的深入，横向遍历的选择范围是随之而减小的，
 而是每个递归的遍历范围是一样的，**也就不需要startIndex这个参数，但是这样天生需要used来明确之前已经有哪些元素使用过了。**
 
-并且，如果还需要数层去重，那就是用哈希表来处理了。
+并且，如果还需要树层去重，那就是用哈希表来处理了。
 
 * [46. 全排列](https://leetcode-cn.com/problems/permutations/)
 
@@ -1108,6 +1108,66 @@ Set<Integer> set = new HashSet<>();
   3. 由于这题直接利用给的board作为答案，因此一定要在回溯后加上一个flag判断，否则得不到答案
   
 N皇后和解数独其实使用的都是类似全排列的套路，只不过全排列中的used换成了isValid判断规则。
+
+### 图
+
+#### 矩阵遍历
+矩阵遍历类似图遍历，不过也有些许差异，这里单拎出来总结一下，有一些小的技巧：
+
+* 遍历方向  
+```java
+// 矩阵无非就是四个方向，并且是连续的，因此可以通过dx，dy来解决
+private int[] dx = new int[]{0, 1, 0, -1};
+private int[] dy = new int[]{1, 0, -1, 0};
+for (int i = 0; i < 4; i++) {
+    backtracking(x + dx[i], y + dy[i]);
+}
+```
+
+* 访问标记数组
+```java
+// 标记是否已经访问过
+private boolean[][] visited;
+visited[x][y] = true;
+```
+
+* 判断是否超出矩阵范围或已经访问过
+```java
+if (x >= m || y >= n || x < 0 || y < 0 || visited[x][y]) {
+    return;
+}
+```
+
+通常的矩阵遍历，遍历方向就四个，有时可以更少一些，然后递归的结束条件通常是：
+1. 超出矩阵范围
+2. 是否已经访问过
+3. 题目特定的要求
+
+* [剑指 Offer 12. 矩阵中的路径](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/)
+  就利用上述说的相关技巧，回溯体现在当当前节点四个方向访问完毕后，需要将visited重新设置回false，这样不影响后续
+  的递归求解答案。
+  本题的特殊结束条件/确定树的纵向树枝的深度在于words的长度，达到了就说明找到答案了。
+  这题有一个特殊点在于起点是不确定的，因此需要遍历一下。
+  
+* [剑指 Offer 13. 机器人的运动范围 Median](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)
+  这题最特殊的地方，在于求解的是运动范围，相当于图中的节点个数，因此需要类似图的遍历一样，visited变成true之后，就不再回溯了，
+  同时这题还有一个对数值每一位的求和的程序编写，这个其实运用的也是相当广泛。
+  
+```java
+// 对 x 和 y 每一位的数字求和
+private int get(int x, int y) {
+    int result = 0;
+    while (x != 0) {
+        result += x % 10;
+        x /= 10;
+    }
+    while (y != 0) {
+        result += y % 10;
+        y /= 10;
+    }
+    return result;
+}
+```  
   
 ### 链表
 
