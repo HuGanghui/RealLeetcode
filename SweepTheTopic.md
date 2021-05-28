@@ -1195,6 +1195,11 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   这题看上去非常简单，但是关键在于如何原地完成合并，就一个trick，就是从大到小来合并，
   这样就可以利用上nums1的充足的空间。
   
+* [剑指 Offer 39. 数组中出现次数超过一半的数字 Easy](https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/)
+  最直观的做法：就是用哈希来存储所有元素的个数，然后遍历获得答案，时间空间复杂度都是O(n)
+  一个trick：因为这里众数的定义是超过一半并且题目保证一定存在，那么排序后，index位于中间的元素一定是答案
+  更加巧妙的解法-摩尔投票法：核心理念为 票数正负抵消 。此方法时间和空间复杂度分别为O(n)，为本题的最佳解法。
+  
 ### 智力/找规律题
 
 * [剑指 Offer 61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
