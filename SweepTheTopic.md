@@ -614,6 +614,12 @@ Easy:
 * [剑指 Offer 62. 圆圈中最后剩下的数字](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
 
 * [1823. 找出游戏的获胜者 Median](https://leetcode-cn.com/problems/find-the-winner-of-the-circular-game/)
+
+**丑数问题**
+
+* [剑指 Offer 49. 丑数 Median](https://leetcode-cn.com/problems/chou-shu-lcof/)
+  这题的递推方程本身我其实就没特别理解，强行记忆，核心就是用三个指针分别指向2，3，5目前乘的次数，
+  然后每次比较大小，最小的就是第i个丑数，最后返回的是第n个。
   
 #### 2. 数组求和转换
 
@@ -1205,3 +1211,7 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
 * [剑指 Offer 61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
   先排序，然后遍历获得joker数量，同时保证没有重复元素，关键trick在于最后如果非joker的最大最小值小于5（要求的连续数量）
   则说明可以是顺子。
+  
+* [263. 丑数](https://leetcode-cn.com/problems/ugly-number/)
+  根据质因数的定义，小于等于0的必然不是丑数，否则就一直除2，3，5，如果最后剩下1，说明就是丑数。
+ 
