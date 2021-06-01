@@ -207,6 +207,21 @@ Java中的Map有三个比较常用的实现类
     // (char) ('0' + i) OK，(char)(i) 就不OK
 ```
 
+#### String and StringBuilder
+
+String是一个不可变类，一旦创建则无法更改，而StringBuilder是一个可变类，可以通过一系列API来修改
+字符串，最终再调用toString()将其转换为String对象，StringBuffer则是StringBuilder的线程安全版本。
+通过StringBuilder来做中间调整比String单纯的拼接效率高很多。
+
+```java
+StringBuilder res = new StringBuilder();
+for(String s : strings)
+    res.append(s); // append
+return res.toString();
+
+// 还有insert、delete、reverse等API
+```
+
 #### Comparable and Comparator接口
 
 让类继承Comparable接口，重写compareTo方法，从而可以使类原生支持排序，Comparator接口则是外部的一个排序规则，
