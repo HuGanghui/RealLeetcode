@@ -606,6 +606,12 @@ Easy:
 * [303. 区域和检索 - 数组不可变](https://leetcode-cn.com/problems/range-sum-query-immutable/)
   简单一维前缀和递推公式：$dp[i] = dp[i-1] + nums[i]$，$dp[i]$表示从0-i的所有元素和，
   一次O(n)时间复杂度的计算，可以保证后续O(1)时间复杂度获取任何两个索引下标之间的元素和。
+  
+Median:  
+
+* [剑指 Offer 66. 构建乘积数组](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/)  
+  前缀和的推广，变成求前缀乘积和后缀乘积，类似通过递推公式来减少计算，$prefix[i] = prefix[i-1] * num[i-1]$，
+  $suffix[i] = suffix[i+1] * a[i+1]$。
 
 **约瑟夫环问题** 
  
