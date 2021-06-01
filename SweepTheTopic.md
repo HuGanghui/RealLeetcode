@@ -1092,6 +1092,13 @@ Set<Integer> set = new HashSet<>();
 
 * [5747. 将字符串拆分为递减的连续值](https://leetcode-cn.com/problems/splitting-a-string-into-descending-consecutive-values/)
 
+#### 按顺序打印字符串
+
+* [剑指 Offer 17. 打印从1到最大的n位数 Easy](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)
+  这题的核心考点其实在于大数越界，当超出整型范围时，是无法存储的，因此其实应用字符串String类型来表示大数，
+  而利用String类型，通过+1的方式就无法生成下一个数字，String的进位方式效率太低，
+  其实观察可知，生成的列表其实是0-9的全排列，因此通过全排列的方式就可以生成String的数字列表。
+
 #### 二维回溯问题
 所谓的二维回溯问题，其实就是形式上给了一个二维的图形/棋盘，然后需要回溯穷举所有的可行解，
 但是其实这些问题看上去是二维的，基本上可以转换为一维的情况去做，也就是横向和纵向两个方向，只是相对代码量多了些，然后多了
