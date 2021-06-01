@@ -1,8 +1,6 @@
 # IDEA project files
-patch-filter.iml
-patch-filter.ipr
-patch-filter.iws
 .idea
+*.iml
 
 # Eclipse project files
 .settings
@@ -24,13 +22,6 @@ nb-configuration.xml
 target
 bin
 
-# IDEA project files
-patch-filters.iml
-patch-filters.ipr
-patch-filters.iws
-.idea
-*.iml
-
 # Temp files
 *~
 
@@ -43,3 +34,6 @@ replay_pid*
 
 # test file
 src/main/java/Test.java
+
+# private record file
+Record.md
