@@ -830,6 +830,12 @@ Median:
 * [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
   注意二叉搜索树的性质是小于/大于左右所有节点，因此最好的方式是传递一个范围。
   
+* [剑指 Offer 33. 二叉搜索树的后序遍历序列 Median](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
+  二叉搜索树的定义便是每个节点的左子树所有节点都不大于该节点，右子树的所有节点都不小于该节点，是个递归定义的，
+  本题便是利用后序遍历的特点，序列的最后一个是当前节点的值，然后去找第一个大于该节点的值，
+  在这之前便是该节点的左子树，之后是右子树，然后判断第一个大于的节点后的所有值都不小于该节点的值再加上左右子树
+  也满足条件，便OK。  
+  
 #### 3. 完全二叉树的性质利用：
 
 * [222. 完全二叉树的节点个数](https://leetcode-cn.com/problems/count-complete-tree-nodes/)
