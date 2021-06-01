@@ -1235,6 +1235,24 @@ TODO：更难的 885. 螺旋矩阵 III，https://leetcode-cn.com/problems/spiral
    因此验证的做法就是每次入栈后，比较栈首元素是否与当前poped的元素相同，如果相同则出栈，最后查看stack
    中是否还有元素。
    
+#### 旋转矩阵
+
+这类的核心有两步：
+
+* 第一步就是找到旋转前后每个元素的对应下标
+* 第二部就是思考如何得到这个变换，常用手段就是变旋转为翻转，
+  比如上下翻转，对角线翻转
+
+* [48. 旋转图像 Median](https://leetcode-cn.com/problems/rotate-image/)
+  这题的核心就是找到旋转前后每个元素的对应下标，这题是顺时针旋转90度，
+  那就前后对比可以找到`m[row][col] -> m[col][n - row - 1]`。
+  
+  接下来就是如何得到这个变换了，顺时针旋转90度对应的一种方式就是先上下翻转：
+  `m[row][col] -> m[n - row - 1][col]`
+  然后对角线翻转：`m[n - row - 1][col] -> m[col][n - row - 1]`。
+  如果是其它角度比如180度或者逆时针，也是类似分析，先找到最终的变换情况，
+  然后思考如何变换过去，常用手段就是变旋转为翻转。 
+   
 ### 位运算
 
 * [剑指 Offer 56 - I. 数组中数字出现的次数 Median](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
