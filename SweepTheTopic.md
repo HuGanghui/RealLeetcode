@@ -132,6 +132,9 @@ class Pair {
 
 * [链表中的下一个更大节点](https://leetcode-cn.com/problems/next-greater-node-in-linked-list)    
   这两个是类似也是类似的解法
+  
+* [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/)
+  本质上就是下一个更大元素
 
 * [456. 132模式](https://leetcode-cn.com/problems/132-pattern/)
   这题有很多值得考究的点：
