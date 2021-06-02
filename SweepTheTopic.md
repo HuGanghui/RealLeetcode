@@ -834,7 +834,9 @@ Median:
 * [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
   这题设置的返回值是该节点及其子节点是否包含p或者q节点，然后判断节点是否是最近公共祖先，
   使用 (left && right) || ((node.val == p.val || node.val == q.val) && (left || right)) 这个条件，看着有的复杂，
-  但其实还好，记住吧。
+  但其实还好，记住吧。还利用了一个实例变量来存储结果，因为最终要返回TreeNode
+  
+  同题：[剑指 Offer 68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
   
 * [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
   注意二叉搜索树的性质是小于/大于左右所有节点，因此最好的方式是传递一个范围。
