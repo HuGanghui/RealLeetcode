@@ -1233,6 +1233,16 @@ private int get(int x, int y) {
   因此这题本质上转换成了一个排序问题，只不过排序对象变了以及排序规则变了，其它的就是利用常见的
   排序算法，比如快排，归并或者堆排序。  
   
+* [字符串出现次数的TopK 牛客热考题](https://www.nowcoder.com/practice/fd711bdfa0e840b381d7e1b82183b3ee?tpId=188&&tqId=38637&rp=1&ru=/activity/oj&qru=/ta/job-code-high-week/question-ranking)
+  这题是要求时间复杂度小于O(nlogn)的，要达到O(nlogk)，很明显需要使用
+  堆/优先队列来完成，因为优先队列的操作复杂度取决于树高，只要我们保证
+  优先队列只有k个元素即可，TopK的题，确实可以舍弃前面的元素，保留住k个元素。
+  
+  然后这题如果直接使用Java的优先队列是更轻松的一件事，否则需要自己实现一个
+  优先队列，并且利用了Comparable接口来进行比较。  
+  
+  相同题：[692. 前K个高频单词 Median](https://leetcode-cn.com/problems/top-k-frequent-words/)
+  
 ### 链表
 
 链表题常用的技巧：
