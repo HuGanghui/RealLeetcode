@@ -760,6 +760,20 @@ Median:
   这题放在这里，主要是反应了一个现象：如果需要不断重复使用i-j是否是回文（或者其它结果）的结果，那就最好提前预处理一下，存储下来，
   这题就是要利用最长回文子串DP过程中会记录下所有i-j是否是回文。这种预处理的优化值得注意。
   
+* [剑指 Offer 19. 正则表达式匹配 Hard](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/)
+  参考labuladong博客：https://mp.weixin.qq.com/s/TAiIIxoDXx67MNGXea6gfQ
+  从最简单的情况的来思考，先不考虑正则符号，递归形式就是 s[i] == p[j] && isMatch(s, p,
+  i+1, j+1)，base case是 if ( i == s.length) {return j == p.length}
+  if (j == p.length) {return i == s.length}
+  
+  增加 "."符号，很简单就是 (s[i] == p[j] || p[j] == ".") && isMatch(s, p, i+1, j+1)，
+  增加 "*"符号，"*"符号有两种情况，一种是"*"前一个符号出现为0，则 ans = isMatch(s, p,
+  i, j+2); 另一种是"*"前一个符号出现任意次，则 ans = s[i] == p[j] && isMatch(s, p,
+  i+1, j) 这时还有base case 需要修改一下，因为当i == s.length，可能刚好 j+1是"*"，这样
+  还是可以匹配上，因为有出现零次的情况。 
+  
+  目前使用的方式是自顶向下带memo的备忘录形式，这种比较好理解。  
+  
 #### 6. 使用自顶向下-带备忘录的搜索更直观简单的问题
 
 本质上，动态规划也就是穷举，和DFS/回溯是一样的，尤其自顶向下-带备忘录的模式，只不过是它发现在穷举搜索过程中会有
