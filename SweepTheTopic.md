@@ -624,6 +624,11 @@ Median:
 
 * [1823. 找出游戏的获胜者 Median](https://leetcode-cn.com/problems/find-the-winner-of-the-circular-game/)
 
+**前缀最小/大值**
+类似前缀和，利用了最小/大值也可以迭代记录$min[i] = Math.min(min[i-1], num[i])$
+
+* [剑指 Offer 63. 股票的最大利润 Median](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
+  
 **丑数问题**
 
 * [剑指 Offer 49. 丑数 Median](https://leetcode-cn.com/problems/chou-shu-lcof/)
