@@ -1280,6 +1280,15 @@ private int get(int x, int y) {
   
   相同题：[692. 前K个高频单词 Median](https://leetcode-cn.com/problems/top-k-frequent-words/)
   
+#### 非比较排序的利用
+非比较排序主要就是指对计数/桶排序的原理的利用，比较少见但也比较巧妙。
+
+* [5777. 使数组元素相等的减少操作次数 Median](https://leetcode-cn.com/problems/reduction-operations-to-make-the-array-elements-equal/)
+  这题思考后会发现，本质上就是类似计数排序的考察，从最大到第二小的每个元素，
+  需要进行变换的次数就是比它小的数的key的数量 * 这个元素的所有的元素。
+  
+  这题的一个trick就是它给的元素的大小范围是比较小的，小于 5 * 10^4。
+
 ### 链表
 
 链表题常用的技巧：
