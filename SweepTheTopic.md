@@ -1419,6 +1419,15 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   一个trick：因为这里众数的定义是超过一半并且题目保证一定存在，那么排序后，index位于中间的元素一定是答案
   更加巧妙的解法-摩尔投票法：核心理念为 票数正负抵消 。此方法时间和空间复杂度分别为O(n)，为本题的最佳解法。
   
+### 字符串技巧题
+
+* [剑指 Offer 67. 把字符串转换成整数](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/) 
+  参考最高分题解，核心在于对首个字符的处理，如果是空格就循环丢弃，然后到第一个非空格，如果是正号
+  或者负号，设置一个符号标记，然后遍历接下来的，如果是非数字则跳出，返回result；否则进行ascii码
+  转换为数字的过程，先乘10，在加。
+  但是要主要有个越界的情况，就是大于int所能表示的最大和最小，这个判断利用 bndry = Integer.MAX_VALUE / 10；
+  如果 res > bndry || res == bndry && str.charAt(j) > '7' 则是越界了，通过符号标记判断返回最大还是最小。  
+  
 ### 智力/找规律题
 
 * [剑指 Offer 61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
