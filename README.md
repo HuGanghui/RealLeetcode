@@ -151,6 +151,13 @@ Java中的Map有三个比较常用的实现类
     // list to array 
     List<String> result = new ArrayList<>();
     result.toArray(new String[result.size()]);
+    
+    // 迭代器
+    List<Integer> list = new LinkedList<>();
+    Iterator<Integer> iterator = list.iterator();
+    while (iterator.hasNext()) {
+        Integer ele = iterator.next();
+    }
 ```
 
 #### PriorityQueue
