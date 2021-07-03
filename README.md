@@ -31,6 +31,9 @@ most of my solutions of algorithm problems in leetcode.
 * [LeetCode Cookbook](https://github.com/YS-THX/leetcode)
   用Go语言解决了LeetCode中的绝大部分题目，并且做了很好的分类和梳理，并提供了一定的
   模板值得一看，尤其二分查找。
+  
+* [LeetCode Solutions](https://github.com/azl397985856/leetcode)  
+  有一些题目的总结还是很不错的，尤其是对于字节跳动的题目的解析，值得一看。
 
 ## 2. Courses/Seminars/Videos
 
