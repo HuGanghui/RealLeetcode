@@ -41,18 +41,16 @@ public void push_back(int value) {
 
 ```java
 public int pop_front() {
-        int ele;
-        if (!dequeOne.isEmpty()) {
-            ele = dequeOne.pollFirst();
-            // 如果出队元素等于队首元素时，队首出队
-            if (ele == dequeTwo.peekFirst()) {
-                dequeTwo.pollFirst();
-            }
-        } else {
-            ele = -1;
-        }
-        return ele;
+    if (isEmpty()) {
+        return -1;
     }
+    int ele = array[f];
+    f = (f + 1) % CAP;
+    if (maxDeque.peekFirst() == ele) {
+        maxDeque.removeFirst();
+    }
+    return ele;
+}
 ```
 
 * [剑指 Offer 59 - I. 滑动窗口的最大值](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)
@@ -61,26 +59,23 @@ public int pop_front() {
 
 ```java
 for (int i = 0; i < n; i++) {
-    // 初始化还未到滑窗大小
-    if (i < k - 1) {
-        while (!deque.isEmpty() && nums[i] > deque.peekLast()) {
+    if (i <= k-1) {
+        while(!deque.isEmpty() && deque.peekLast() < nums[i]) {
             deque.removeLast();
         }
         deque.addLast(nums[i]);
+        if (i == k-1) {
+            resList.add(deque.peekFirst());
+        }
     } else {
-        if (i != k - 1) {
-            // 先出队，判断是否与队首元素相等
-            int removed = nums[i - k];
-            if (deque.peekFirst() == removed) {
-                deque.removeFirst();
-            }
+        if (deque.peekFirst() == nums[i - k]) {
+            deque.removeFirst();
         }
-        // 然后按规则加入单调队列
-        while (!deque.isEmpty() && nums[i] > deque.peekLast()) {
+        while(!deque.isEmpty() && deque.peekLast() < nums[i]) {
             deque.removeLast();
         }
         deque.addLast(nums[i]);
-        result[i - k + 1] = deque.peekFirst();
+        resList.add(deque.peekFirst());
     }
 }
 ```
