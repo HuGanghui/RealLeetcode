@@ -1,4 +1,4 @@
-package ComplexStructure;
+package DesignTopic.ComplexStructure;
 
 import java.util.HashMap;
 import java.util.Map;

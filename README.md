@@ -219,12 +219,12 @@ for(String s : strings)
     res.append(s); // append
 return res.toString();
 
-// 还有insert、delete、reverse等API
+// 还有insert(offset, ele)、delete(start, end)、deleteCharAt(index)、reverse等API
 ```
 
 #### Comparable and Comparator接口
 
-让类继承Comparable接口，重写compareTo方法，从而可以使类原生支持排序，Comparator接口则是外部的一个排序规则，
+让类实现Comparable接口，重写compareTo方法，从而可以使类原生支持排序，Comparator接口则是外部的一个排序规则，
 如果某个类原本没有继承Comparable接口或者需要新的排序规则，可以使用这个接口。
 
 ```java

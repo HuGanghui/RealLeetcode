@@ -55,6 +55,7 @@ public class Queue_List implements Queue {
         Node v = head.getNext();
         head.setNext(null);
         head = v;
+        size--;
         if (0 == size) {
             tail = null;
         }
