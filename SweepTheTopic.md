@@ -502,7 +502,10 @@ public boolean search(int[] nums, int target) {
 稍微难了一点，难点就在于附加了一个图/矩阵的DFS/BFS遍历，需要熟悉这个知识点。
 
 关于DFS过程中，有个剪枝操作是就是对于一个check，visited中经过，是不需要回溯的，
-因为后面必然的答案必然不会通过这里。
+因为后面必然的答案必然不会通过这里。这样也导致其DFS时间复杂度固定在O(m*n/n^2)
+
+这类题目如果直接DFS，遍历所有可能的路径，然后得到其中的最优，一般情况下时间复杂度会更高，就是
+因为没有了上述的那个不需要回溯的过程。
 
 * [778. 水位上升的泳池中游泳 Hard](https://leetcode-cn.com/problems/swim-in-rising-water/)
   这题的难点在于在check部分，需要进行dfs，相当于一道复合题，因此
