@@ -365,6 +365,9 @@ Median:
 
 #### 6. 最大最小化问题：
 
+第一个特点就是最大最小化，第二个特点就是解空间是明确的且可遍历的，
+在此基础上，其实区别仅仅是check函数的不同罢了。
+
 Median:
 
 * [1011. 在 D 天内送达包裹的能力](https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/)
@@ -372,6 +375,9 @@ Median:
 * [1552. 两球之间的磁力](https://leetcode-cn.com/problems/magnetic-force-between-two-balls/)
   这题也是套路和数组分割就是没有区别，只不过这题是最小值的最大
   
+* [875. 爱吃香蕉的珂珂 Median](https://leetcode-cn.com/problems/koko-eating-bananas/)
+
+* [1482. 制作 m 束花所需的最少天数](https://leetcode-cn.com/problems/minimum-number-of-days-to-make-m-bouquets/)  
 
 Hard:
 
@@ -489,6 +495,29 @@ public boolean search(int[] nums, int target) {
 * [5764. 准时到达的列车最小时速 Median](https://leetcode-cn.com/problems/minimum-speed-to-arrive-on-time/)
   这题是要求最小正整数时速，然后题目感觉就是非常典型的二分查找的类型，依次二分判断直到获得最小。
   话不多说，直接二分框架，然后check根据题目进行编写即可。
+  
+  
+##### 最值问题 + check中使用DFS进行遍历判断
+
+稍微难了一点，难点就在于附加了一个图/矩阵的DFS/BFS遍历，需要熟悉这个知识点。
+
+关于DFS过程中，有个剪枝操作是就是对于一个check，visited中经过，是不需要回溯的，
+因为后面必然的答案必然不会通过这里。
+
+* [778. 水位上升的泳池中游泳 Hard](https://leetcode-cn.com/problems/swim-in-rising-water/)
+  这题的难点在于在check部分，需要进行dfs，相当于一道复合题，因此
+  难点上升，check部分时间复杂度O(N^2)，总复杂度为O(N^2logN)。
+
+  这里有个剪枝操作，就是对于一个check，visited中经过，是不需要回溯的，
+  因为后面必然的答案必然不会通过这里。
+
+* [1631. 最小体力消耗路径 Median](https://leetcode-cn.com/problems/path-with-minimum-effort/)
+  这题同样是二分+dfs的套路，只不过具体的限制条件有了变换。
+  
+* [机器人漫步 2021.07.05 虾皮笔试]()  
+  求最小值，解空间明确且可遍历，显然是二分的套路，二分+dfs。
+  不过这里dfs中是否需要回溯，要看测试来判断。  
+  
 
 ### 动态规划（Dynamic Programming）
 
