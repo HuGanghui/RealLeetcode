@@ -315,6 +315,17 @@ Easy:
   
 #### 5. 完全二叉树的性质：
 
+二分查找 + 树结构 + 位运算，通过二进制来表示最后一层的每个节点，非常巧妙的一种方法：
+
+```java
+/**
+*         1      0层
+        2   3    1层
+       4 5 6 7   2层
+      8 ...      3层 2^3 二进制表示1000，因此刚好除了最高位，从 1<< (depth - 1)来逐个判断位数，0往左，1往右
+*/
+```
+
 Median:
 
 * [222. 完全二叉树的节点个数](https://leetcode-cn.com/problems/count-complete-tree-nodes/)
@@ -329,12 +340,13 @@ Median:
   常见的二分查找模板
   ```java
     int left = 1 << depth;
-    int right = (1 << (depth+1)) - 1;
+    int max = (1 << (depth+1)) - 1; // 移位运算符的优先级 低于 加减乘除求余
+    int right = max; 
     int result = 0;
     while (left <= right) {
         int mid = left + (right - left) / 2;
         if (exits(root, depth, mid)) {
-            if (mid+1 == (1 << (depth+1)) || !exits(root, depth, mid+1)) {
+            if (mid == max || !exits(root, depth, mid+1)) {
                 result = mid;
                 break;
             }
@@ -449,7 +461,10 @@ private int binarySearch(int[] array) {
   这题是要求在旋转数组中寻找给定的target值，这题的思路是通过每次二分后有序的那部分来
   进行比较，通过mid 和 left 来的大小来判断哪left-mid mid-right 哪部分是有序的，然后
   在有序的那部分进行判断，如果在有序那部分的范围内则进一步缩小范围，否则就转到另外一部分去。
-  利用有序部分的思想还是值得借鉴的。   
+  利用有序部分的思想还是值得借鉴的。
+  
+  这题还有一个思路，就是先找最小值，也就是分界点，然后判断target是在左右哪一个有序数组中，然后再在其中进行
+  二分查找target。   
 
 * [81. 搜索旋转排序数组 II Median](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
   和上面的区别仅仅在于这个这里会有相同元素，因此这题其实是通解，主要就在于对于凹字的情况，通过left/right移动一个来化解
