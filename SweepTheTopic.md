@@ -906,7 +906,23 @@ Median:
 * [617. 合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)
   基本思路还是深度遍历，这种两个树的，就细心点考虑一些不同的情况组合就行，并且这里涉及到构建一颗新树，
   一般这种情况都是需要递归函数返回当前节点，然后上一层来拼接左右孩子节点就行。
-  
+
+```java
+public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+    if (root1 == null) {
+        return root2;
+    }
+    if (root2 == null) {
+        return root1;
+    }
+
+    TreeNode merged = new TreeNode(root1.val + root2.val);
+    merged.left = mergeTrees(root1.left, root2.left);
+    merged.right = mergeTrees(root1.right, root2.right);
+    return merged;
+}
+```  
+
 #### 2. 深度递归返回左右子树结果，然后当前节点拼接左右子树结果获得最终结果：
 
 * [124. 二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
@@ -922,6 +938,15 @@ Median:
   
 * [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
   注意二叉搜索树的性质是小于/大于左右所有节点，因此最好的方式是传递一个范围。
+ 
+  需要注意的是取值范围，Integer不够，可能要Long， `Long.MIN_VALUE, Long.MAX_VALUE`
+  
+* [105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+  这题有的关键有两个，一个就是通过前序在中序中找到对应元素，然后就是获得左右子树分别的长度，然后dfs即可。
+  需要一个map，然后函数过程中传递下标`preLeft, preRight, inLeft, inRight`。
+
+* [106. 从中序与后序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+  与前序与中序遍历序列构造二叉树类似。   
   
 * [剑指 Offer 33. 二叉搜索树的后序遍历序列 Median](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
   二叉搜索树的定义便是每个节点的左子树所有节点都不大于该节点，右子树的所有节点都不小于该节点，是个递归定义的，
