@@ -991,6 +991,8 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   
   一般情况下单个前序或其它遍历是无法复原二叉树的，但是如果添加了null节点，
   就可以了。 
+  
+  String 判断是否相同要使用 equals 不能用 ==
    
 ### 贪心算法
 
