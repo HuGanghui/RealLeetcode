@@ -226,7 +226,7 @@ String是一个不可变类，一旦创建则无法更改，而StringBuilder是�
 ```java
 StringBuilder res = new StringBuilder();
 for(String s : strings)
-    res.append(s); // append
+    res.append(s); // append(string s) append(char c) 都可
 return res.toString();
 
 // 还有insert(offset, ele)、delete(start, end)、deleteCharAt(index)、reverse等API
