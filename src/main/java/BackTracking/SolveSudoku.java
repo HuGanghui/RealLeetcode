@@ -16,72 +16,75 @@ import java.util.List;
  *    flag判断，否则得不到答案
  */
 public class SolveSudoku {
-    private boolean flag = false;
-
+    private boolean result = false;
+    private char[] chars = new char[] {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     public void solveSudoku(char[][] board) {
-        List<int[]> lists = new ArrayList<>();
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
+        int n = board.length;
+        List<int[]> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 if (board[i][j] == '.') {
-                    lists.add(new int[]{i, j});
+                    list.add(new int[]{i, j});
                 }
             }
         }
-        backtracking(lists, lists.size(), 0, board);
+        backtracking(board, list, 0);
+        System.out.println(result);
     }
 
-    private void backtracking(List<int[]> lists, int n, int index, char[][] board) {
-        if (index == n) {
-            flag = true;
+    private void backtracking(char[][] board, List<int[]> list, int index) {
+
+        if (index == list.size()) {
+            result = true;
             return;
         }
 
-        if (flag == true) {
+        if (result) {
             return;
         }
 
         for (int i = 1; i <= 9; i++) {
-            int[] temp = lists.get(index);
-            board[temp[0]][temp[1]] = (char) ('0' + i);
-            if (isValid(board, temp, (char) ('0' + i))) {
-                backtracking(lists, n, index + 1, board);
+            int[] rc = list.get(index);
+            if (isValid(board, rc, chars[i])) {
+                board[rc[0]][rc[1]] = chars[i];
+                backtracking(board, list, index + 1);
+                if (result) {
+                    return;
+                }
+                board[rc[0]][rc[1]] = '.';
             }
-            // 回溯后的flag判断
-            if (flag == true) {
-                return;
-            }
-            board[temp[0]][temp[1]] = '.';
         }
     }
 
-    private boolean isValid(char[][] board, int[] index, char i) {
+    private boolean isValid(char[][] board, int[] rc, char num) {
+
+        for (int col = 0; col < board.length; col++) {
+            if (col == rc[1]) {
+                continue;
+            }
+            if (board[rc[0]][col] == num) {
+                return false;
+            }
+        }
+
         for (int row = 0; row < board.length; row++) {
-            if (row == index[0]) {
+            if (row == rc[0]) {
                 continue;
             }
-            if (board[row][index[1]] == i) {
+
+            if (board[row][rc[1]] == num) {
                 return false;
             }
         }
 
-        for (int column = 0; column < board[0].length; column++) {
-            if (column == index[1]) {
-                continue;
-            }
-            if (board[index[0]][column] == i) {
-                return false;
-            }
-        }
-
-        int row_part = index[0] / 3;
-        int column_part = index[1] / 3;
-
-        for (int row = row_part * 3; row < row_part * 3 + 3; row ++) {
-            for (int column = column_part * 3; column < column_part * 3 + 3; column++) {
-                if (row == index[0] && column == index[1]) {
+        int left_up_row = (rc[0] / 3) * 3;
+        int left_up_col = (rc[1] / 3) * 3;
+        for (int i = left_up_row; i < left_up_row + 3; i++) {
+            for (int j = left_up_col; j < left_up_col + 3; j++) {
+                if (i == rc[0] && j == rc[1]) {
                     continue;
                 }
-                if (board[row][column] == i) {
+                if (board[i][j] == num) {
                     return false;
                 }
             }
