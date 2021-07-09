@@ -173,7 +173,7 @@ Java中的Map有三个比较常用的实现类
 
 ```
 
-#### Arrays 
+#### Array and Arrays 
 
 ```java
     // 数组的内置排序方式，默认从小到大
@@ -184,6 +184,9 @@ Java中的Map有三个比较常用的实现类
     int[][] tasks = new int[n][m];
     // 通过lambda表达式来进行比较规则的设置
     Arrays.sort(tasks, (x,y)->x[0]-y[0]);
+    
+    // Java高维数组定义，就直接定义就好，如下面三维数组
+    int[][][] threeArray = new int[n][m][l];
     
 ```
 
@@ -221,7 +224,7 @@ Java中的Map有三个比较常用的实现类
 
 String是一个不可变类，一旦创建则无法更改，而StringBuilder是一个可变类，可以通过一系列API来修改
 字符串，最终再调用toString()将其转换为String对象，StringBuffer则是StringBuilder的线程安全版本。
-通过StringBuilder来做中间调整比String单纯的拼接效率高很多。
+通过StringBuilder来做中间调整比String单纯的拼接效率高****很多。
 
 ```java
 StringBuilder res = new StringBuilder();
@@ -562,7 +565,7 @@ void backtracking(参数) {
 
 **明确「状态」 -> 定义 dp 数组/函数的含义 -> 明确「选择」-> 明确 base case。**
 
-[斐波那契数列](https://leetcode-cn.com/problems/fibonacci-number/submissions/)
+[斐波那契数列](https://leetcode-cn.com/problems/fibonacci-number/)
 以及[零钱兑换问题](https://leetcode-cn.com/problems/coin-change/)，都使用了动态规划来求解，
 下面列出这两题递归/回溯、动态规划-自顶向下（备忘录法）以及 动态规划-自低向上 三种方法，以供思考：
 
@@ -660,8 +663,8 @@ void backtracking(参数) {
         return coinChange(coins, amount, new int[amount]);
     }
 
-    private int coinChange(int[] coins, int rem, int[] count) {
-        if (rem  < 0) {
+    private int coinChange(int[] coins, int rem, int[] memo) {
+        if (rem < 0) {
             return -1;
         }
 
@@ -669,18 +672,18 @@ void backtracking(参数) {
             return 0;
         }
 
-        if (count[rem - 1] != 0) {
-            return count[rem - 1];
+        if (memo[rem - 1] != 0) {
+            return memo[rem - 1];
         }
 
         int min = Integer.MAX_VALUE;
         for (int coin : coins) {
-            int res = coinChange(coins, rem - coin, count);
+            int res = coinChange(coins, rem - coin, memo);
             if (res >= 0 && res < min) {
                 min = 1 + res;
             }
         }
-        count[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        memo[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
         return count[rem - 1];
     }
 ```
