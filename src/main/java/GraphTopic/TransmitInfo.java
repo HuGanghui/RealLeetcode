@@ -75,19 +75,19 @@ public class TransmitInfo {
         }
     }
 
-    public int numWaysDP(int n, int[][] relation, int k) {
-        int[] dp = new int[n];
-        dp[0] = 1;
-        for (int i = 1; i <= k; i++) {
-            int[] next = new int[n];
-            for (int[] edge : relation) {
-                int src = edge[0];
-                int des = edge[1];
-                next[des] += dp[src];
-            }
-            dp = next;
-        }
-        return dp[n-1];
-    }
+//    public int numWaysDP(int n, int[][] relation, int k) {
+//        int[] dp = new int[n];
+//        dp[0] = 1;
+//        for (int i = 1; i <= k; i++) {
+//            int[] next = new int[n];
+//            for (int[] edge : relation) {
+//                int src = edge[0];
+//                int des = edge[1];
+//                next[des] += dp[src];
+//            }
+//            dp = next;
+//        }
+//        return dp[n-1];
+//    }
 
 }
