@@ -1,4 +1,4 @@
-package DynamicProgramming.MaxProfit;
+package DynamicProgramming.Linear.MaxProfit;
 
 /**
  * 剑指 Offer 63. 股票的最大利润 Median

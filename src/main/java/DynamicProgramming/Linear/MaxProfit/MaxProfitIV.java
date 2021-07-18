@@ -1,4 +1,4 @@
-package DynamicProgramming.MaxProfit;
+package DynamicProgramming.Linear.MaxProfit;
 
 /**
  * 188. 买卖股票的最佳时机 IV Hard

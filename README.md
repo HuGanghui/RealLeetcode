@@ -246,6 +246,17 @@ public interface Comparable<T> {
 }
 ```
 
+#### Int and Double
+```java
+// 对于需要保留小数点的，需要加上一个小数，比如0.0
+int temp = 5;
+int dist = 2;
+// left = 2.0
+double left = temp / dist;
+// left = 2.5
+double left = temp / (dist + 0.0);
+```
+
 ### 4.1 栈和队列
 
 #### 单调队列/栈 
