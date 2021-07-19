@@ -1572,13 +1572,22 @@ private int get(int x, int y) {
 
 * [61. 旋转链表 Median](https://leetcode-cn.com/problems/rotate-list/)
 
+* [25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
+  这题和反转链表的一个区间两道题都是复用了反转链表的前k个元素这一函数，然后
+  都是在递归中包含了递归，只不过根据具体的情况有一定的微调。
+
 #### 合并/分离链表
 
 * [21. 合并两个有序链表 Easy](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+  就是归并排序的merge做法，来进行合并两个链表。
 
 * [86. 分隔链表 Median](https://leetcode-cn.com/problems/partition-list/)
+  最简单的做法就是构造两个链表，最后进行拼接即可。
 
-TODO：还有 k个一组反转链表和判断回文链表没看
+#### 回文链表
+
+* [面试题 02.06. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list-lcci/)
+  最简单的做法就是复制一下链表，然后双指针判断。更复杂的不借用额外空间的方法，之后再看。
 
 #### 复制/构建链表
 
