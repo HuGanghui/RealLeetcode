@@ -922,9 +922,51 @@ DP递推公式可以总结为：dp[i][j] = sum(dp[i-1][j-w[k]]), k代表了第i�
 
 * [1641. 统计字典序元音字符串的数目](https://leetcode-cn.com/problems/count-sorted-vowel-strings/)
    
-#### 6. 字符串类型问题
+#### 6. 子序列问题
 
-Median:
+**子序列（不连续）**
+
+* [300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
+  求最长递增子序列，与连续子数组最大和一样，通过获得以每个元素结尾的最长递增，然后依次后之前的进行比较
+  即可，dp[i] = Math.max(dp[j] + 1, dp[i]) (j < i)
+  
+* [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
+  经典的两个子序列直接进行比较的例子，也算是编辑距离的弱化版本，只能删除。典型的递推公式：dp[i][j] = 
+  dp[i-1][j-1] + 1 (si == tj); dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1])
+  
+* [1035. 不相交的线](https://leetcode-cn.com/problems/uncrossed-lines/)
+  求最长公共子序列的变形题。
+  
+* [583. 两个字符串的删除操作](https://leetcode-cn.com/problems/delete-operation-for-two-strings/)
+  求最长公共子序列的变形题，然后m + n - 2 * lcs 即可。
+  
+* [392. 判断子序列](https://leetcode-cn.com/problems/is-subsequence/)
+  最优解是双指针遍历，但是用DP的话，与最长公共子序列非常相似，只需要转换一下，如果最长的
+  公共序列长度等于较小的那个，说明就是子序列。
+  
+* [115. 不同的子序列](https://leetcode-cn.com/problems/distinct-subsequences/)
+  这题感觉有点难想递推方程，dp[i][j] = dp[i-1][j-1] + dp[i-1][j] (si == tj); 
+  dp[i][j] = dp[i-1][j] (si != tj) (dp[i][j] 表示以s中以i结尾的子序列中t中以j结尾的数量)。
+
+* [72. 编辑距离 Hard](https://leetcode-cn.com/problems/edit-distance/) 
+  很典型的两个字符串匹配的题目，并且可以很容易联想到其子问题以及递推公式，
+  因此利用动态规划来解决这个问题就显而易见了，那DP的关键就是递推公式（包括明确
+  状态，选择），base case，以及使用memo的自顶向下或者自底向上。
+  递推公式：dp[i][j] = dp[i-1][j-1] (si == tj); 
+  Math.min(dp[i-1][j-1] + 1, Math.min(dp[i-1][j] + 1, dp[i][j-1] + 1)) (si != tj)。
+  
+  也是有点完全背包的感觉，三种操作可以无限取，背包容量就相当于两个序列的长度，然后求最小的操作数。
+  
+**子序列（连续）**
+
+* [剑指 Offer 42. 连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
+  基本思路：动态规划，时间复杂度O(n)，空间复杂度O(n)，这题是一道经典的转换题，如何获取整个数组的连续子数组的最大和，
+          那就是首先**获取以每个元素结尾（这种状态表示方法值得记住，可以解决很多类似的数组题目）** 的连续子数组的最大和，
+          然后再取其中的最大值，并且递推公式为：$dp[i] = max(dp[i-1] + nums[i], nums[i])$, 
+          dp[i]表示以第i元素结尾的连续子数组的最大和。
+          更精妙的思路：分治，后续可以尝试。
+
+**回文**
 
 * [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/)
   基本思路：动态规划，时间复杂度O(n^2)，空间复杂度O(n^2)，回文尝试从短的到长的判断，
@@ -932,7 +974,14 @@ Median:
           然后递推顺序注意从短到长判断
   优化思路：中心扩展算法，就是以每个元素为中心，逐步向外扩展，判断是否是回文，从而记录下最长的，不过需要注意，边界情况有两种，一种
           是一个元素为中心，一个是有两个元素为中心，所以这两种都要考虑。时间复杂度O(n^2)，空间复杂度O(1)，相比DP，主要是空间复杂度
-          的降低，但如果需要保存每个i-j是否是回文的结果，还是需要DP的。
+          的降低，但如果需要保存每个i-j是否是回文的结果，还是需要DP的。         
+          
+* [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/)
+  最长回文子串的轻度变形题，只是变成了求回文子串的数量。
+  
+* [516. 最长回文子序列](https://leetcode-cn.com/problems/longest-palindromic-subsequence/)
+  dp[i][j] = dp[i+1][j-1] + 2 （si == tj); dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1]) (si != tj);
+  dp[i][j]表示区间i-j之间的回文子序列。
           
 * [131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)
   这题放在这里，主要是反应了一个现象：如果需要不断重复使用i-j是否是回文（或者其它结果）的结果，那就最好提前预处理一下，存储下来，
@@ -951,13 +1000,6 @@ Median:
   还是可以匹配上，因为有出现零次的情况。 
   
   目前使用的方式是自顶向下带memo的备忘录形式，这种比较好理解。  
-  
-* [72. 编辑距离 Hard](https://leetcode-cn.com/problems/edit-distance/) 
-  很典型的两个字符串匹配的题目，并且可以很容易联想到其子问题以及递推公式，
-  因此利用动态规划来解决这个问题就显而易见了，那DP的关键就是递推公式（包括明确
-  状态，选择），base case，以及使用memo的自顶向下或者自底向上。
-  
-  也是有点完全背包的感觉，三种操作可以无限取，背包容量就相当于两个序列的长度，然后求最小的操作数。
   
 #### 7. 使用自顶向下-带备忘录的搜索更直观简单的问题
 
