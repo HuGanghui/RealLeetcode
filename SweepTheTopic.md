@@ -1690,7 +1690,21 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   最直观的做法：就是用哈希来存储所有元素的个数，然后遍历获得答案，时间空间复杂度都是O(n)
   一个trick：因为这里众数的定义是超过一半并且题目保证一定存在，那么排序后，index位于中间的元素一定是答案
   更加巧妙的解法-摩尔投票法：核心理念为 票数正负抵消 。此方法时间和空间复杂度分别为O(n)，为本题的最佳解法。
-  
+
+### 差分数组
+有人总结：单点更新，范围查询，就用线段树；
+        范围更新，单独查询，就用差分数组。
+
+* [252. 会议室](https://leetcode-cn.com/problems/meeting-rooms/)  
+
+* [253. 会议室 II](https://leetcode-cn.com/problems/meeting-rooms-ii/)
+
+* [370. 区间加法](https://leetcode-cn.com/problems/range-addition/)
+
+* [1094. 拼车](https://leetcode-cn.com/problems/car-pooling/)
+
+* [1109. 航班预订统计](https://leetcode-cn.com/problems/corporate-flight-bookings/)
+
 ### 字符串技巧题
 
 * [剑指 Offer 67. 把字符串转换成整数](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/) 
