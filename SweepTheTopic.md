@@ -1214,10 +1214,13 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
 
 * [快速排序](./src/main/java/SortTopic/ClassicSort/QuickSort.java)
   快排中的partition部分，就是利用了快慢指针进行原地排序。
-
+  
+* [0，1，2三种元素构成的数组排序](https://blog.csdn.net/sinat_28108651/article/details/51743830?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)  
+  类似的方式，0放最左边，2放最右边即可。
+ 
 **移除数组、链表中的重复元素的各种变形，有几点值得总结的：**
 
-* [26. 删除有序数组中的重复项 Easy](https://leetcode-cn.com/problems/remove-linked-list-elements/)
+* [26. 删除有序数组中的重复项 Easy](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
   slow-fast，fast探路来遍历整个数组，发现不重复的元素就让slow走一步，这样最后slow就是指向不重复数组的结尾。
     
 * [80. 删除有序数组中的重复项 II Median](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
@@ -1240,6 +1243,8 @@ while (ptr.next != null) {
     }
 }
 ```
+
+* [203. 移除链表元素](https://leetcode-cn.com/problems/remove-linked-list-elements/)
 
 * [83. 删除排序链表中的重复元素 Easy](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
   这种方式都是保留了重复元素的第一个
@@ -1314,8 +1319,8 @@ return dummy.next;
 * [剑指 Offer 57 - II. 和为s的连续正数序列 Easy](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
   这是利用滑动窗口解决连续数字和的问题，目前唯一一道非字符串的滑动窗口题，不过连续数字和为target确实适合滑动窗口。
   
-* * [5763. 哪种连续子字符串更长 Easy](https://leetcode-cn.com/problems/longer-contiguous-segments-of-ones-than-zeros/)
-    这题也是解决连续字符串/数字的问题，典型的滑动窗口或者快慢指针也行（滑动窗口算快慢指针的一类）。      
+* [5763. 哪种连续子字符串更长 Easy](https://leetcode-cn.com/problems/longer-contiguous-segments-of-ones-than-zeros/)
+  这题也是解决连续字符串/数字的问题，典型的滑动窗口或者快慢指针也行（滑动窗口算快慢指针的一类）。      
   
 ### 回溯
 
