@@ -1061,6 +1061,52 @@ Median:
   那就是DP table，自底向上的套路了。
   
   不同的题目可能更适合或者说想到某一种更容易/直观。
+  
+#### 对递推公式进行一定变形来降低复杂度
+
+**前缀和公式变形**
+
+不过值得注意的是，我喜欢使用的前缀和表达式，对于 prefix[j] - prefix[i] == k，
+有一种情况 prefix[j] == k 没有考虑到，需要单独计算一下。
+
+并且保证不重不漏，使用哈希表边计算边添加的方式。
+
+```java
+prefix[0] = nums[0];
+for (int i = 1; i < n; i++) {
+    prefix[i] = prefix[i-1] + nums[i];
+}
+```
+
+Java中对于负数求余数也还是负数，因此要处理一下：
+  
+`int left = (prefix[i] % k + k) % k;`
+
+* [560. 和为K的子数组](https://leetcode-cn.com/problems/subarray-sum-equals-k/)  
+  公式：prefix[j] - prefix[i] == k 可转变为 prefix[j] - k = prefix[i]
+  
+* [1248. 统计「优美子数组」](https://leetcode-cn.com/problems/count-number-of-nice-subarrays/) 
+  与上题的区别就是从和变成奇数的个数 
+  
+* [974. 和可被 K 整除的子数组](https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/)
+  公式：(prefix[j] - prefix[i]) % k == 0 可转变为 prefix[j] % k == prefix[i] % k
+  
+  但是有一个问题，Java中对于负数求余数也还是负数，因此要处理一下：
+  `int left = (prefix[i] % k + k) % k;`
+  
+* [拼多多2021编程题-多多的求和计算](https://www.nowcoder.com/questionTerminal/877c520f935c4d67a4614dc4bce84a1a)  
+  与上题思路一致，但是最后一个用例都超过long范围了，就没辙了。
+  
+**DP公式变形**
+
+* [5815. 扣分后的最大得分 Median](https://leetcode-cn.com/problems/maximum-number-of-points-with-cost/)
+  直观上可以了解到当前行要得到最大分数，只与上一行相关，因此可以利用DP来完成，不过
+  这题需要进行一定的优化，将时间复杂度从O(RC^2)降低到O(RC)。优化的方法还是通过
+  公式的化简，然后复用。具体的就是维护到当前j的左边的最大以及右边的最大。
+  
+  dp[i-1][k] + points[i][j] - Math.abs(k - j) ——> dp[i-1][k] + k - j + points[i][j] (k < j)
+  发现dp[i-1][k] + k 与 j无关，就维护左边最大值即可，右边同理。
+
     
 ### 树（Tree）
 
