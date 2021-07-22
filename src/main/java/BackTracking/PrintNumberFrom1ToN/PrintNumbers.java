@@ -1,4 +1,4 @@
-package BackTracking;
+package BackTracking.PrintNumberFrom1ToN;
 
 import java.util.ArrayList;
 import java.util.List;
