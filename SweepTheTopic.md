@@ -991,6 +991,9 @@ DP递推公式可以总结为：dp[i][j] = sum(dp[i-1][j-w[k]]), k代表了第i�
 * [516. 最长回文子序列](https://leetcode-cn.com/problems/longest-palindromic-subsequence/)
   dp[i][j] = dp[i+1][j-1] + 2 （si == tj); dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1]) (si != tj);
   dp[i][j]表示区间i-j之间的回文子序列。
+  
+* [360编程题2021-回文数变换](https://www.nowcoder.com/questionTerminal/d39e41ee2b51435fbc9257bd05274586)
+  核心还是从dp[i+1][j-1]/dp[i][j-1]/dp[i+1][j]往外推，斜着遍历即可。  
           
 * [131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)
   这题放在这里，主要是反应了一个现象：如果需要不断重复使用i-j是否是回文（或者其它结果）的结果，那就最好提前预处理一下，存储下来，
