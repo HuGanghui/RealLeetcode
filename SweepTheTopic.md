@@ -1202,6 +1202,15 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   就可以了。 
   
   String 判断是否相同要使用 equals 不能用 ==
+  
+#### 7. 前序遍历回溯
+  
+* [257. 二叉树的所有路径](https://leetcode-cn.com/problems/binary-tree-paths/)
+  使用前序遍历配合StringBuilder进行回溯，先记住加入前`int size = builder.size()`
+  随后，使用`builder.delete(size, builder.length()+1)`进行回溯。
+  
+  对于非递归的迭代方法，有个技巧就是，用额外的一个队列/栈来保存路径，这样就可以在变换节点的
+  同时，得到对应的父节点的路径。
    
 ### 贪心算法
 
