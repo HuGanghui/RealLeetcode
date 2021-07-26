@@ -40,6 +40,19 @@ while(x!=0) {
 
 * [剑指 Offer 67. 把字符串转换成整数](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)
 
+**关于有效括号的问题**
+一旦关于有效括号的问题，一定要想到一个原则就是
+
+有效括号必然左括号的数量大于等于右括号。
+
+* [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/)
+  就是利用了这个原则，进行的回溯，只有当左括号的数量大于右括号，才能枚举右括号。
+  
+* [32. 最长有效括号 Hard](https://leetcode-cn.com/problems/longest-valid-parentheses/)
+  这题也是最长子串，当然先到可以用滑动窗口，结合有效括号的性质，缩减时机遇到左括号数量小于右括号数量时，
+  缩减则是把之前的积累的左右括号数量全部归零，并让left直接移动到right处。
+  还有就是，如果只在left_count == right_count时记录，对于`(()`这种情况，就无法记录到，因此解决方案就是
+  反过来再进行一遍取最大值，这个应该是利用了有效括号的对称性，来弥补这种情况。  
  
 ### 栈和队列
 
@@ -1441,7 +1454,13 @@ return dummy.next;
   这是利用滑动窗口解决连续数字和的问题，目前唯一一道非字符串的滑动窗口题，不过连续数字和为target确实适合滑动窗口。
   
 * [5763. 哪种连续子字符串更长 Easy](https://leetcode-cn.com/problems/longer-contiguous-segments-of-ones-than-zeros/)
-  这题也是解决连续字符串/数字的问题，典型的滑动窗口或者快慢指针也行（滑动窗口算快慢指针的一类）。      
+  这题也是解决连续字符串/数字的问题，典型的滑动窗口或者快慢指针也行（滑动窗口算快慢指针的一类）。
+  
+#### 归并排序的merge阶段的运用
+
+* [415. 字符串相加](https://leetcode-cn.com/problems/add-strings/)
+  就是模拟算术求和，从尾部开始，然后形式其实类似归并排序的merge环节。
+  只不过注意有个进1。
   
 ### 回溯
 
