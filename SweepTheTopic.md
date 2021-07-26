@@ -8,6 +8,38 @@
   
 * [拼多多2021笔试题-多多的字符变换](https://www.nowcoder.com/questionTerminal/78255f37c7dc4f749ceafc8c58206a43) 
   在理解上述语句的基础上，可以对两个字符串进行排序，随后就有点贪心的思想，依次的去比较相减然后相加就行。
+  
+**假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−2^31,  2^31 − 1]。**
+
+对于这句话的理解 ——> 会出现大于int范围的数，且不能使用long类型，因此需要自己处理超过数值范围的情况
+
+常见的处理方式如下，以`Integer.MAX_VALUE / 10`为阈值，当前数值大于/等于但是下一个数 > 7 则越界了，
+负数类似处理。
+
+```java
+// res代表当前的数值大小
+int res = 0;
+int bound = Integer.MAX_VALUE / 10;
+while(x!=0) {
+    //每次取末尾数字
+    int tmp = x%10;
+    //判断是否 大于 最大32位整数
+    if (res>bound || (res==bound && tmp>7)) {
+        return 0;
+    }
+    //判断是否 小于 最小32位整数
+    if (res<-bound || (res==-bound && tmp<-8)) {
+        return 0;
+    }
+    res = res*10 + tmp;
+    x /= 10;
+}
+```
+
+* [7. 整数反转](https://leetcode-cn.com/problems/reverse-integer/)
+
+* [剑指 Offer 67. 把字符串转换成整数](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)
+
  
 ### 栈和队列
 
