@@ -1728,11 +1728,21 @@ private int get(int x, int y) {
 
 #### 合并/分离链表
 
-* [21. 合并两个有序链表 Easy](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+* [21. 合并两个有序链表 Easy](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
   就是归并排序的merge做法，来进行合并两个链表。
 
 * [86. 分隔链表 Median](https://leetcode-cn.com/problems/partition-list/)
   最简单的做法就是构造两个链表，最后进行拼接即可。
+  
+#### 链表综合题
+
+* [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/) 
+  思路就是先找到中间节点，然后将后半段反转，然后合并两个链表。
+  因此，算是涉及了三个简单题，构成一道综合题。
+  
+  还有类似的不是合并前后两部分，而是链表的奇偶部分：链表奇数节点升序，偶数节点降序，
+  请你进行排序，使用O(1)空间复杂度，同样分三部分：
+  1.按奇偶分割链表 2. 反转偶数部分 3. 进行两个有序链表合并。
 
 #### 回文链表
 
