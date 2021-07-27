@@ -1,4 +1,4 @@
-package DynamicProgramming;
+package DynamicProgramming.StringMatch;
 
 /**
  * 剑指 Offer 19. 正则表达式匹配 Hard
@@ -40,8 +40,11 @@ public class IsMatch {
         }
 
         boolean firstMatch = (i < s.length) && (s[i] == p[j] || p[j] == '.');
-        boolean ans = false;
+        boolean ans;
+
+        // 先考虑可以0次匹配的
         if (j <= p.length - 2 && p[j+1] == '*') {
+            // 跳过的要放前面
             ans = isMatch(s, p, i, j+2) || (firstMatch && isMatch(s, p, i+1, j));
         } else {
             ans = firstMatch && isMatch(s, p, i+1, j+1);
