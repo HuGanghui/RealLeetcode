@@ -726,6 +726,9 @@ Median:
 类似前缀和，利用了最小/大值也可以迭代记录$min[i] = Math.min(min[i-1], num[i])$
 
 * [剑指 Offer 63. 股票的最大利润 Median](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
+
+* [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
+  分别记录左右的前/后缀最大值，然后计算即可。时间复杂度O(n)。
   
 **丑数问题**
 
