@@ -1168,7 +1168,18 @@ Java中对于负数求余数也还是负数，因此要处理一下：
   
   dp[i-1][k] + points[i][j] - Math.abs(k - j) ——> dp[i-1][k] + k - j + points[i][j] (k < j)
   发现dp[i-1][k] + k 与 j无关，就维护左边最大值即可，右边同理。
+  
+#### 状态压缩DP
 
+* [1931. 用三种不同颜色为网格涂色 Hard](https://leetcode-cn.com/problems/painting-a-grid-with-three-different-colors/)
+  这题是典型的状态压缩题，最核心的一些trick
+  
+  * 3进制表示所有涂色可能
+  * 行列没有本质区别，因此根据时间复杂度，选择较小的作为行
+  * 两次预处理，预处理这种方式值得学习
+  
+* [1411. 给 N x 3 网格图涂色的方案数](https://leetcode-cn.com/problems/number-of-ways-to-paint-n-3-grid/)
+  上一题的简化版本，就是m ——> 3  
     
 ### 树（Tree）
 
