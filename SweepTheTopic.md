@@ -1376,6 +1376,9 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   
 * [0，1，2三种元素构成的数组排序](https://blog.csdn.net/sinat_28108651/article/details/51743830?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)  
   类似的方式，0放最左边，2放最右边即可。
+  
+* [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/)
+  和上题一样  
  
 **移除数组、链表中的重复元素的各种变形，有几点值得总结的：**
 
