@@ -1315,11 +1315,15 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   优先队列，并且time按什么顺序放，有可能题目固定好了，比如单线程CPU，但也可能正反都可以，那就要思考是正还是反，
   我总结了规律，一般从当前选择比较少的入手。
   
-  写法上一般先确定time顺序，然后对time进行数组排序，然后定义好优先队列比较规则，然后两层循环外部是出队，内部是入队，
-  然后可能还需要根据题目定义一些curtime之类的变量，在循环过程中可能需要逻辑比较什么的。
+  写法上一般**先确定time顺序，然后对time进行数组排序，然后定义好优先队列比较规则，然后两层循环外部是出队，内部是入队，
+  然后可能还需要根据题目定义一些curtime之类的变量，在循环过程中可能需要逻辑比较什么的**。
 
-* [5736. 单线程 CPU Median](https://leetcode-cn.com/problems/single-threaded-cpu/)
+* [1834. 单线程 CPU Median](https://leetcode-cn.com/problems/single-threaded-cpu/)
   需要根据cpu时间来确定顺序入队的时机，然后需要不断更新curtime。
+  
+* [1353. 最多可以参加的会议数目](https://leetcode-cn.com/problems/maximum-number-of-events-that-can-be-attended/)
+  数组排序加优先队列，数组排序按会议开始时间早-晚排序，优先队列按会议结束时间早-晚排序。
+  两层while + if 外面控制出队，内部控制入队。这题多了一个while是过期的时间剔除，需要将结束的会议从优先队列中去除。
   
 * [2021.4.18 腾讯笔试 最少游戏惩罚](./src/main/java/SimulationTopic/MinPunitiveScore.java)
   特别的，这题需要反着，从后往前遍历curtime。
