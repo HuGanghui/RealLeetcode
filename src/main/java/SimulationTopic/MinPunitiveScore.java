@@ -56,7 +56,7 @@ public class MinPunitiveScore {
         int curtime = timeAndDian[0][0];
         int i = 0;
         // 和CPU非常的相似，两层循环，内部是offer，外部是poll
-        while (curtime <= 1) {
+        while (curtime >= 1) {
             while (i < timeAndDian.length && timeAndDian[i][0] >= curtime) {
                 pq.offer(timeAndDian[i]);
                 i++;
