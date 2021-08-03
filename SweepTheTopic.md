@@ -592,6 +592,12 @@ public boolean search(int[] nums, int target) {
   求最小值，解空间明确且可遍历，显然是二分的套路，二分+dfs。
   不过这里dfs中是否需要回溯，要看测试来判断。  
   
+  
+#### 9. 求两个有序数字中的第k个数：
+
+* [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/)
+  二分查找是本题最优的方法，通过比较A[k/2 - 1] 和 B[k/2 - 1]，哪个小，前面最多有k-2个数比它小，肯定不是
+  第k个数，所以舍弃，这样每次都可以舍弃一半。
 
 ### 动态规划（Dynamic Programming）
 
@@ -1495,6 +1501,10 @@ return dummy.next;
 * [415. 字符串相加](https://leetcode-cn.com/problems/add-strings/)
   就是模拟算术求和，从尾部开始，然后形式其实类似归并排序的merge环节。
   只不过注意有个进1。
+  
+* [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/)
+  将两个数组merge成一个，然后返回对应位置的数字即可，时间空间复杂度都是O(m+n)，但着不是最优的方法，
+  用二分查找才是最优的方法。
   
 ### 回溯
 
