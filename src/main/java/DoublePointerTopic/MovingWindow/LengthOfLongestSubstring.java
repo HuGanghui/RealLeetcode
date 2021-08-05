@@ -21,11 +21,9 @@ public class LengthOfLongestSubstring {
             char added = s.charAt(right);
             right++;
             need.put(added, need.getOrDefault(added, 0) + 1);
+
             if (need.get(added).equals(1)) {
-                int temp = right - left;
-                if (temp > len) {
-                    len = right - left;
-                }
+                len = Math.max(len, right - left);
             }
 
             while(need.get(added) > 1) {
