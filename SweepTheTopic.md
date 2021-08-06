@@ -1496,6 +1496,16 @@ return dummy.next;
 * [5763. 哪种连续子字符串更长 Easy](https://leetcode-cn.com/problems/longer-contiguous-segments-of-ones-than-zeros/)
   这题也是解决连续字符串/数字的问题，典型的滑动窗口或者快慢指针也行（滑动窗口算快慢指针的一类）。
   
+* [1004. 最大连续1的个数 III](https://leetcode-cn.com/problems/max-consecutive-ones-iii/)  
+  这种连续的题，都非常适合用滑动窗口来解决，不过这题需要有个转换，就是
+  可以将k个0变成1，其实就是滑动窗口中最多可以有k个0。
+  
+* [487. 最大连续1的个数 II](https://leetcode-cn.com/problems/max-consecutive-ones-ii/) 
+  上面一题的简化，k个变成1个。
+  
+* [485. 最大连续 1 的个数](https://leetcode-cn.com/problems/max-consecutive-ones/)
+  这题相当于k等于0，当然也可以用最长递增子数组的方法做。
+  
 #### 归并排序的merge阶段的运用
 
 * [415. 字符串相加](https://leetcode-cn.com/problems/add-strings/)
