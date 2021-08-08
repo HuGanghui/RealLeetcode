@@ -1022,6 +1022,12 @@ DP递推公式可以总结为：dp[i][j] = sum(dp[i-1][j-w[k]]), k代表了第i�
   
   也是有点完全背包的感觉，三种操作可以无限取，背包容量就相当于两个序列的长度，然后求最小的操作数。
   
+* [最小操作次数 美团笔试 2021.08.08](./src/main/java/DynamicProgramming/MinOperationNum.java)
+  核心在于从前往后依次判断就行，如果相等就不变，不等则操作一次，
+  然后将对应的序列也做相应的修改。然后不断进行，关于换哪个是无所谓的。
+  
+  这题的核心在于想到之前的变完了之后，是不影响后面的结果的。
+  
 **子序列（连续）**
 
 * [剑指 Offer 42. 连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
