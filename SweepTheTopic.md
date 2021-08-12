@@ -28,7 +28,7 @@ while(x!=0) {
         return 0;
     }
     //判断是否 小于 最小32位整数
-    if (res<-bound || (res==-bound && tmp<-8)) {
+    if (res < -bound || (res==-bound && tmp<-8)) {
         return 0;
     }
     res = res*10 + tmp;
@@ -56,7 +56,7 @@ while(x!=0) {
  
 ### 栈和队列
 
-#### 1. 单调队列/栈 
+#### 单调队列/栈 
 
 * [1673. 找出最具竞争力的子序列](https://leetcode-cn.com/problems/find-the-most-competitive-subsequence/)
   这题核心其实是要维护一个单调队列/栈（只能在尾部插入/删除），优先找最小的数，如果后面准备入队的数比当前队列中的数要小，
@@ -192,7 +192,7 @@ class Pair {
        1. 对于题目要求的子序列符合 ai < ak < aj, 其中 i<j<k，首先将问题学会转化为找到一个元素 aj,
   在区间[1, j-1]里有比他小的元素M1，在区间[j+1, n]里也有比他小的元素M2, 并且M2>M1，因此首先找的
   [1, j-1]里的最小值M1
-       2. 然后我们可以暴力求解了，复杂度O(n^2), 比较难想的就是可以从数组尾部开始，委会一个单调递减的栈，要求对a[j], 栈内元素
+       2. 然后我们可以暴力求解了，复杂度O(n^2), 比较难想的就是可以从数组尾部开始，维护一个单调递减的栈，要求对a[j], 栈内元素
   必须大于对应M1，否则就出栈，然后比较栈顶元素和a[j], 如果栈顶元素 < a[j], 那我们就找的了，不然就入栈，符合单减栈的要求
        3. 在2.隐藏了一个点就是M1所在数组也是单减的，因此对于栈内元素大于对应M1，否则就出栈是不影响后面的。
 
@@ -210,6 +210,35 @@ for (int j = nums.length -1; j >= 1; j--) {
 }
 ```
 
+**单调栈求矩形面积**
+
+* [84. 柱状图中最大的矩形 Hard](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
+  利用单调栈来完成求值，放入栈的是下标，一旦遇到自己的高度小的，那么当前的栈顶的矩形面积就可以求出。
+  
+  并且利用了左右哨兵来简化边界条件的考虑。
+  
+```java
+for (int i = 1; i < len; i++) {
+    while (newHeight[i] < newHeight[deque.peekLast()]) {
+        int curHeight = newHeight[deque.pollLast()];
+        int curWidth = i - deque.peekLast() - 1;
+        res = Math.max(res, curHeight * curWidth);
+    }
+    deque.addLast(i);
+}
+```
+
+* [85. 最大矩形 Hard](https://leetcode-cn.com/problems/maximal-rectangle/)
+  在上题的基础上，先得到每行每列连续1的个数，然后遍历每列来求柱状图的最大矩形即可。
+
+**单调栈+贪心**
+
+* [1081. 不同字符的最小子序列](https://leetcode-cn.com/problems/smallest-subsequence-of-distinct-characters/)
+  在求字典序最小的前提下，再加两点，一个是已经存在在栈中的，不能再添加，另一个是如果后面没有栈顶元素了，
+  那栈顶元素不能再弹出。
+
+* [402. 移掉 K 位数字](https://leetcode-cn.com/problems/remove-k-digits/)
+  在求字典序最小的前提下，多了只能删除k位的限制。
 
 
 ### 二分查找/搜索（Binary Search）
@@ -1751,6 +1780,13 @@ private int get(int x, int y) {
   优先队列，并且利用了Comparable接口来进行比较。  
   
   相同题：[692. 前K个高频单词 Median](https://leetcode-cn.com/problems/top-k-frequent-words/)
+  
+* [373. 查找和最小的K对数字](https://leetcode-cn.com/problems/find-k-pairs-with-smallest-sums/)
+  本质上就是k路归并排序。。。
+  
+  让A数组中所有元素和B数组中的第一个元素B[0]配对，注意这里我们加入的二元组是数组的索引，形成A.length对二元组，分别将其放入极小堆中
+  从极小堆中取出一个元素(i,j)（也就是最小的二元组），放入结果数组中，然后得到这个元组在B数组中的索引位置并加一，得到新的二元组（i,j+1），将其放入极小堆中。
+ 
   
 #### 非比较排序的利用
 非比较排序主要就是指对计数/桶排序的原理的利用，比较少见但也比较巧妙。
