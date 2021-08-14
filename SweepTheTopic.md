@@ -1934,6 +1934,16 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   另外，这里设计到负指数的问题，当然可以变成正指数来做，但是需要注意的是，有越界的可能，
   因为int范围是-2^31 <= n <= 2^31-1，所以需要考虑越界问题。
   
+### BFSearch
+大部分的DFS也可以用BFS来解决，这里总结只能用BFS的情况。
+
+* [剑指 Offer II 109. 开密码锁](https://leetcode-cn.com/problems/zlDJc7/)
+  求最少步数这种，基本上一种方式就是BFS来解决。
+  这题需要注意的就是加减获得下一个String还有点麻烦，其它没什么。  
+  
+* [5793. 迷宫中离入口最近的出口 Median](https://leetcode-cn.com/problems/nearest-exit-from-entrance-in-maze/)
+  对于求最短步数这种题目，常用的套路就是BFS。  
+  
 ### 数组技巧题
 这边主要总结一些有一些看似简单，但是有小技巧trick的数组题
 
