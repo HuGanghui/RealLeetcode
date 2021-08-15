@@ -1910,6 +1910,11 @@ TODO：更难的 885. 螺旋矩阵 III，https://leetcode-cn.com/problems/spiral
   然后对角线翻转：`m[n - row - 1][col] -> m[col][n - row - 1]`。
   如果是其它角度比如180度或者逆时针，也是类似分析，先找到最终的变换情况，
   然后思考如何变换过去，常用手段就是变旋转为翻转。 
+  
+#### 其它
+
+* [机器人炸弹 美团笔试题 2021.08.15](./src/main/java/SimulationTopic/RobotBomb.java)  
+  核心是理解模拟的过程，然后就是排序，加二分查找来解决这个问题。
    
 ### 位运算
 
