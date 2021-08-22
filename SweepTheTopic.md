@@ -1952,6 +1952,9 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
 * [5793. 迷宫中离入口最近的出口 Median](https://leetcode-cn.com/problems/nearest-exit-from-entrance-in-maze/)
   对于求最短步数这种题目，常用的套路就是BFS。  
   
+* [多多的心情 2021.08.22 拼多多笔试题](./src/main/java/BFSearch/DuoduodeMood.java)
+  同样的最短路径，用BFS，但是又一个trick比较恶心。
+  
 ### 数组技巧题
 这边主要总结一些有一些看似简单，但是有小技巧trick的数组题
 
