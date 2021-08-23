@@ -57,4 +57,41 @@ public class IsMatch {
         }
         return ans;
     }
+
+    // DP的方法貌似更加简单，并且边界条件只有 dp[0][0] = true;
+    public boolean isMatchDP(String s, String p) {
+        int m = s.length();
+        int n = p.length();
+
+        boolean[][] dp =new boolean[m+1][n+1];
+        dp[0][0] = true;
+        for (int i = 0; i <= m; i++) {
+            // j = 0 就是false，无需再考虑
+            for (int j = 1; j <= n; j++) {
+                if (p.charAt(j-1) == '*') {
+                    dp[i][j] = dp[i][j-2];
+                    if (matches(s, p, i, j-1)) {
+                        dp[i][j] = dp[i][j] || dp[i-1][j];
+                    }
+                } else {
+                    if (matches(s, p, i, j)) {
+                        dp[i][j] = dp[i-1][j-1];
+                    }
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
+    private boolean matches(String s, String p, int i, int j) {
+        if (i == 0) {
+            return false;
+        }
+
+        if (p.charAt(j-1) == '.') {
+            return true;
+        }
+
+        return s.charAt(i-1) == p.charAt(j-1);
+    }
 }
