@@ -1091,6 +1091,8 @@ DP递推公式可以总结为：dp[i][j] = sum(dp[i-1][j-w[k]]), k代表了第i�
   这题就是要利用最长回文子串DP过程中会记录下所有i-j是否是回文。这种预处理的优化值得注意。
   
 * [剑指 Offer 19. 正则表达式匹配 Hard](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/)
+  考虑题目内容，优先根据题意进行自底向上的DP更加简单。
+  
   参考labuladong博客：https://mp.weixin.qq.com/s/TAiIIxoDXx67MNGXea6gfQ
   从最简单的情况的来思考，先不考虑正则符号，递归形式就是 s[i] == p[j] && isMatch(s, p,
   i+1, j+1)，base case是 if ( i == s.length) {return j == p.length}
@@ -1103,17 +1105,14 @@ DP递推公式可以总结为：dp[i][j] = sum(dp[i-1][j-w[k]]), k代表了第i�
   还是可以匹配上，因为有出现零次的情况。 
   
   目前使用的方式是自顶向下带memo的备忘录形式，这种比较好理解。 
+
+* [44. 通配符匹配](https://leetcode-cn.com/problems/wildcard-matching/)
+  类似正则表达式的做法，自底向上的DP按步骤完成即可。
   
-* [通配符匹配 虾皮2021笔试题 Hard]()
-  这题和力扣上的区别在于，特殊字符的功能有所区别，力扣上
-  "*"表示匹配前一个字符 0次或任意次，这就需要提前考虑：
-  j <= p.length - 2 && p[j+1] == '*'
-  而本题没有这种，反而更简单些。
-  
-  但是相同的问题是，需要主要 为了避免
-  a
-  a****
-  这种情况，需要优先考虑'*'和'#'，最后考虑直接匹配和"?"   
+  稍微特殊就对于空字符串的情况的考虑，初始化多了一步
+
+* [通配符匹配 虾皮2021笔试题 Hard](./src/main/java/DynamicProgramming/StringMatch/IsMatchII.java)
+  在通配符匹配稍作变通，区别不大。
   
 #### 7. 使用自顶向下-带备忘录的搜索更直观简单的问题
 
