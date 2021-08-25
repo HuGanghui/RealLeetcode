@@ -1,9 +1,12 @@
 package SortTopic.ClassicSort;
 
+import java.util.*;
+
 /**
  * 快速排序
  * 时间复杂度是O(nlog(n)) 空间复杂度O(1)
- * 
+ *
+ * 优化点之随机化主元
  */
 public class QuickSort implements ArraySort {
     @Override
@@ -21,6 +24,10 @@ public class QuickSort implements ArraySort {
     }
 
     private int partition(int[] arr, int left, int right) {
+        // 优化：随机化主元
+        int random = new Random().nextInt(right - left + 1) + left;
+        swap(arr, left, random);
+
         // 设定基准值（pivot）
         int pivot = left;
         int index = pivot + 1;
