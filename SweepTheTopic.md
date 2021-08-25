@@ -2020,7 +2020,10 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   
 * [43. 字符串相乘](https://leetcode-cn.com/problems/multiply-strings/)
   乘法和加法的区别就在于乘法需要和另一个数的每一个进行乘法，
-  然后其它倒是类似的，这里用了一个数组来填装res，最后再进行字符串的转换。  
+  然后其它倒是类似的，这里用了一个数组来填装res，最后再进行字符串的转换
+  
+* [6. Z 字形变换](https://leetcode-cn.com/problems/zigzag-conversion/)
+    
   
 ### 智力/找规律题
 
