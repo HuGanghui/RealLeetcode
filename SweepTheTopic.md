@@ -1499,6 +1499,9 @@ return dummy.next;
   上述两题都是NSum的特例，其核心是TwoSum，然后递归处理就行，但是其中值得注意的是
   对于去重的要求，就需要排序了，排序然后跳过，是一个基本的方式。
   
+* [16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/)
+  和三数之和类似的做法  
+  
 * [11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)
   这题可能比较难想到双指针的正确性，但确实是双指针，因为较小的如果不移动，
   得到的值只会更小。
