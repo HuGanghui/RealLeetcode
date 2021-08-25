@@ -1350,6 +1350,9 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   值得注意的是，i < n-1，因为当i == n-1 就无需再更新了。
   
   同样DP可以，最差时间复杂度O(n^2)，不过需要遍历顺序需要倒着。
+  
+* [135. 分发糖果](https://leetcode-cn.com/problems/candy/)
+  根据规则要求比两侧都高的，可以转化为左右两边各自遍历，取最大值即可。
 
 #### 涉及两个变量的贪心策略
   
