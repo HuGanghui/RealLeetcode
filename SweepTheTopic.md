@@ -2018,6 +2018,10 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   由于只有加减和括号，因此要处理的其实就是括号和符号的问题，通过一个栈来保存目前的符号，
   这样后续处理的话就可以直接计算并放到结果res中去。 
   
+* [43. 字符串相乘](https://leetcode-cn.com/problems/multiply-strings/)
+  乘法和加法的区别就在于乘法需要和另一个数的每一个进行乘法，
+  然后其它倒是类似的，这里用了一个数组来填装res，最后再进行字符串的转换。  
+  
 ### 智力/找规律题
 
 * [剑指 Offer 61. 扑克牌中的顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)
