@@ -2008,6 +2008,11 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
 
 * [1109. 航班预订统计](https://leetcode-cn.com/problems/corporate-flight-bookings/)
 
+### 线段树
+
+* [307. 区域和检索 - 数组可修改](https://leetcode-cn.com/problems/range-sum-query-mutable/)
+  分三个操作：构建树，单点更新以及区间求和。
+
 ### 字符串技巧题
 
 * [剑指 Offer 67. 把字符串转换成整数](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/) 
