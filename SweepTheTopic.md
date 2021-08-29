@@ -1952,7 +1952,10 @@ TODO：更难的 885. 螺旋矩阵 III，https://leetcode-cn.com/problems/spiral
   
 * [剑指 Offer 56 - II. 数组中数字出现的次数 II Median](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
   这题变了一些，变成只有一个数字出现一次，其它都出现三次了，其实本质上还是去找位运算有啥规律，
-  这题的每一位求和再除以3，就可以获得只出现一次那个，就通过这个方式去还原得到答案即可。  
+  这题的每一位求和再除以3，就可以获得只出现一次那个，就通过这个方式去还原得到答案即可。 
+  
+* [剑指 Offer 65. 不用加减乘除做加法](https://leetcode-cn.com/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/)
+  没有进位就是异或运算，有进位就是与运算，因此这两者结合即可   
 
 ### DFSearch
 DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，所以这里总结一些看上去没有那么典型的，非上述那些类的DFS的应用
