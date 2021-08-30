@@ -2049,6 +2049,11 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   
 * [6. Z 字形变换](https://leetcode-cn.com/problems/zigzag-conversion/)
     
+    
+### 概率题
+
+* [528. 按权重随机选择](https://leetcode-cn.com/problems/random-pick-with-weight/)
+  前缀和的和，刚好作为那个index的右边界，然后随机均匀生成一个数，进行二分查找找右边界即可。    
   
 ### 智力/找规律题
 
