@@ -2048,6 +2048,10 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   然后其它倒是类似的，这里用了一个数组来填装res，最后再进行字符串的转换
   
 * [6. Z 字形变换](https://leetcode-cn.com/problems/zigzag-conversion/)
+
+* [165. 比较版本号](https://leetcode-cn.com/problems/compare-version-numbers/)
+  这题有两个语言上的点需要注意，一个`version1.split("\\.")`,点需要转义，另一个就是
+  Integer.parseInt会自动去除前缀零。
     
     
 ### 概率题

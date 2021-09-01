@@ -257,6 +257,14 @@ double left = temp / dist;
 double left = temp / (dist + 0.0);
 ```
 
+#### Integer
+```java
+// Integer.parseInt() 具有自动去除前缀零的功能
+String a = "001"
+// b = 1
+int b = Integer.parseInt(a)
+```
+
 ### 4.1 栈和队列
 
 #### 单调队列/栈 
