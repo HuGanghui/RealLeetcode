@@ -1541,6 +1541,10 @@ return dummy.next;
 * [剑指 Offer 57 - II. 和为s的连续正数序列 Easy](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
   这是利用滑动窗口解决连续数字和的问题，目前唯一一道非字符串的滑动窗口题，不过连续数字和为target确实适合滑动窗口。
   
+* [713. 乘积小于K的子数组](https://leetcode-cn.com/problems/subarray-product-less-than-k/)
+  暴力做法就是枚举，以nums中每个数为结尾/开头的看看有多少个符合条件，然后这种连续数组的满足条件的最优解法，
+  一般就是滑动窗口，但是这题稍微有点特殊，在于是求乘积小于k的总和，因此需要每次在right作为结尾时，都记录一下总数。  
+  
 * [5763. 哪种连续子字符串更长 Easy](https://leetcode-cn.com/problems/longer-contiguous-segments-of-ones-than-zeros/)
   这题也是解决连续字符串/数字的问题，典型的滑动窗口或者快慢指针也行（滑动窗口算快慢指针的一类）。
   
