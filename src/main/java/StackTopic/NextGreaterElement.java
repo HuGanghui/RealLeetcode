@@ -1,6 +1,6 @@
 package StackTopic;
 
-import java.util.Stack;
+import java.util.*;
 
 /**
  * 503. 下一个更大元素 II Medium
@@ -10,39 +10,24 @@ import java.util.Stack;
  */
 public class NextGreaterElement {
     public int[] nextGreaterElements(int[] nums) {
-        Stack<Pair> stack = new Stack<>();
-        int[] result = new int[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            while (!stack.isEmpty() && nums[i] > stack.peek().value) {
-                result[stack.pop().index] = nums[i];
+        Stack<Integer> stack = new Stack<>();
+        int n = nums.length;
+        int[] result = new int[n];
+        Arrays.fill(result, -1);
+        for (int i = 0; i < n; i++) {
+            while(!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+                result[stack.pop()] = nums[i];
             }
-            Pair pair = new Pair(nums[i], i);
-            stack.push(pair);
-            result[i] = 0;
+            stack.push(i);
         }
-
+        // 再来一遍
         if (!stack.isEmpty()) {
-            while (!stack.isEmpty()) {
-                for (int i = 0; i < nums.length; i++) {
-                    while (!stack.isEmpty() && nums[i] > stack.peek().value) {
-                        result[stack.pop().index] = nums[i];
-                    }
+            for (int i = 0; i < n; i++) {
+                while(!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+                    result[stack.pop()] = nums[i];
                 }
             }
         }
-
         return result;
-
-
-    }
-}
-
-class Pair {
-    int value;
-    int index;
-
-    public Pair(int value , int index) {
-        this.value = value;
-        this.index = index;
     }
 }

@@ -144,37 +144,25 @@ for (int i = 0; i < n; i++) {
 ```java
 public class Solution {
     public int[] nextGreaterElements(int[] nums) {
-        Stack<Pair> stack = new Stack<>();
-        int[] result = new int[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            // 同样的比较
-            while (!stack.isEmpty() && nums[i] > stack.peek().value) {
-                result[stack.pop().index] = nums[i];
+        Stack<Integer> stack = new Stack<>();
+        int n = nums.length;
+        int[] result = new int[n];
+        Arrays.fill(result, -1);
+        for (int i = 0; i < n; i++) {
+            while(!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+                result[stack.pop()] = nums[i];
             }
-            // 然后pair入队/栈
-            Pair pair = new Pair(nums[i], i);
-            stack.push(pair);
-            result[i] = -1;
+            stack.push(i);
         }
-        // 循环数组其实只需要再从头遍历一次就行
+        // 再来一遍
         if (!stack.isEmpty()) {
-            for (int i = 0; i < nums.length; i++) {
-                while (!stack.isEmpty() && nums[i] > stack.peek().value) {
-                    result[stack.pop().index] = nums[i];
+            for (int i = 0; i < n; i++) {
+                while(!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+                    result[stack.pop()] = nums[i];
                 }
             }
         }
         return result;
-    }
-}
-
-class Pair {
-    int value;
-    int index;
-
-    public Pair(int value , int index) {
-        this.value = value;
-        this.index = index;
     }
 }
 ```
