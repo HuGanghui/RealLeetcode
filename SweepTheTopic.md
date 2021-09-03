@@ -1210,6 +1210,13 @@ Java中对于负数求余数也还是负数，因此要处理一下：
   
 * [1411. 给 N x 3 网格图涂色的方案数](https://leetcode-cn.com/problems/number-of-ways-to-paint-n-3-grid/)
   上一题的简化版本，就是m ——> 3  
+  
+  
+#### 二维DP
+
+* [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/)
+  核心是以找以每个点为右下角点时，其构成的最大边长，递推公式：
+  dp[i][j] = Math.min(dp[i-1][j-1], Math.min(dp[i-1][j], dp[i][j-1])) + 1; (matrix[i][j] == '1')
     
 ### 树（Tree）
 
