@@ -1829,6 +1829,10 @@ private int get(int x, int y) {
   
   基本的思想，就是计数排序，先得到n个数中每个数对应有多少个，然后用k去
   抵消，最后可以得到结果。
+  
+* [1122. 数组的相对排序 Easy](https://leetcode-cn.com/problems/relative-sort-array/)
+  数据范围不是很大，最多1000，可以使用计数排序来完成。
+  题解还有利用自定义排序的。  
 
 ### 链表
 
