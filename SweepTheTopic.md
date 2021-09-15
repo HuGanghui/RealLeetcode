@@ -1406,10 +1406,14 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
 * [141. 环形链表 Easy](https://leetcode-cn.com/problems/linked-list-cycle/)
 
 * [142. 环形链表 II Median](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+  `2(a + b) = a + n(b + c) + b` -> `a = (n-1)(b+c) + c`，因此当相等，就再用一个指针，
+  从头开始到与slow相遇就是起点。
+  环形链表的循环判断条件都是 `while(fast.next != null && fast.next.next != null)`
 
 * [剑指 Offer 22. 链表中倒数第k个节点 Easy](https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/)
 
 * [876. 链表的中间结点 Easy](https://leetcode-cn.com/problems/middle-of-the-linked-list/)
+  如果有两个中间节点，放回第二个中间节点，因此使用`while(fast != null && fast.next != null)`
 
 **对数字进行按大小/奇偶进行前半部分后半部分的归类：**
 
@@ -1417,6 +1421,9 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
 
 * [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面 Easy](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
 
+* [1047. 删除字符串中的所有相邻重复项 Easy](https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string/)
+  巧妙的解法是使用双指针，slow代表符合条件的元素的结尾+1，这样可以不需要额外的空间复杂度。
+  
 * [快速排序](./src/main/java/SortTopic/ClassicSort/QuickSort.java)
   快排中的partition部分，就是利用了快慢指针进行原地排序。
   
@@ -2070,7 +2077,13 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   这题有两个语言上的点需要注意，一个`version1.split("\\.")`,点需要转义，另一个就是
   Integer.parseInt会自动去除前缀零。
     
-    
+* [1209. 删除字符串中的所有相邻重复项 II Median](https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string-ii/)
+  通过一个辅助数组记录重复数量，当达到k就进行删除。
+  
+* [1910. 删除一个字符串中所有出现的给定子字符串 Median](https://leetcode-cn.com/problems/remove-all-occurrences-of-a-substring/)    
+  暴力就是依次判断每个的最后m位是否符合，符合则删除。
+  优化方法是KMP，暂时不会。
+  
 ### 概率题
 
 * [528. 按权重随机选择](https://leetcode-cn.com/problems/random-pick-with-weight/)
