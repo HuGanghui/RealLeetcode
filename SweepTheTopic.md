@@ -2097,4 +2097,8 @@ DFS当然在树以及DP的带memo的自顶向下以及图中有很多应用，�
   
 * [263. 丑数](https://leetcode-cn.com/problems/ugly-number/)
   根据质因数的定义，小于等于0的必然不是丑数，否则就一直除2，3，5，如果最后剩下1，说明就是丑数。
+  
+* [剑指 Offer 03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+  简单做法就是用一个HashSet存储即可，但是如果需要O(1)空间复杂度，就需要利用下标进行交换，这样当遇到两个数相同时，就
+  找到重复的`nums[nums[i]] == nums[i]`，否则就需要进行交换，交换的时候有点绕，用两个辅助变量比较好。
  
