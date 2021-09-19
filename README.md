@@ -473,20 +473,20 @@ class TreeDFS {
     
     // 栈实现多叉树的前序遍历-迭代，二叉树则是children变成左右子树即可
     public void preorder(Node root, List<Integer> result) {
-            if (root != null) {
-                Stack<Node> stack = new Stack<>();
-                stack.push(root);
-                while(!stack.isEmpty()) {
-                    Node node = stack.pop();
-                    // 具体操作，可以换成其它
-                    result.add(node.val);
-                    // 保证左右顺序，栈需要反着放
-                    for (int i = node.children.size() - 1; i >= 0; i--) { 
-                        stack.push(node.children.get(i));
-                    }
+        if (root != null) {
+            Stack<Node> stack = new Stack<>();
+            stack.push(root);
+            while(!stack.isEmpty()) {
+                Node node = stack.pop();
+                // 具体操作，可以换成其它
+                result.add(node.val);
+                // 保证左右顺序，栈需要反着放
+                for (int i = node.children.size() - 1; i >= 0; i--) { 
+                    stack.push(node.children.get(i));
                 }
             }
         }
+    }
      
      // 栈实现多叉树的后序遍历-迭代   
      // 前序遍历顺序是中左右 后序是左右中，因此后序可以通过前序转换过来：
