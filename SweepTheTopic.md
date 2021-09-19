@@ -1267,7 +1267,23 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   需要一个map，然后函数过程中传递下标`preLeft, preRight, inLeft, inRight`。
 
 * [106. 从中序与后序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
-  与前序与中序遍历序列构造二叉树类似。   
+  与前序与中序遍历序列构造二叉树类似。  
+  
+* [109. 有序链表转换二叉搜索树](https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree/)
+  找中间节点，作为根节点，随后递归构建左右节点即可，这题找中间节点，略有不同，就是结尾不一定是null，可能是其它节点。
+
+```java
+private ListNode findMin(ListNode head, ListNode tail) {
+    ListNode fast = head;
+    ListNode slow = head;
+    while (fast != tail && fast.next != tail) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    
+    return slow;
+}
+```        
   
 * [剑指 Offer 33. 二叉搜索树的后序遍历序列 Median](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
   二叉搜索树的定义便是每个节点的左子树所有节点都不大于该节点，右子树的所有节点都不小于该节点，是个递归定义的，
