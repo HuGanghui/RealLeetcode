@@ -1285,7 +1285,7 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
 
 二叉树搜索树介绍详见 [README.md](./README.md)
 
-常规增删改查：
+常规增删改查，利用二叉搜索树的特点，可以使用二分的思想，时间复杂度只有O(logN)：
 
 * [450. 删除二叉搜索树中的节点](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
   删除操作找到目标节点后，根据其不同的子树情况，有几种情况，需要分别考虑。
@@ -1303,11 +1303,23 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   相比单纯的二叉树，可以充分利用二叉搜索树的性质，就是是有序的，因此当前节点无法作为最近公共祖先情况
   一定是p、q都在当前节点的一侧子树中。
   
+维护前一个节点/节点值，结合中序遍历：
+    
 * [剑指 Offer 36. 二叉搜索树与双向链表 Median](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/)
   这题首先要变成有序的循环双向链表，三个点：有序、循环、双向，二叉搜索树
   显然中序遍历就是有序的，然后需要维护链表的全局的头节点和尾节点，构建链表
   常用技巧之一就是哑元节点，然后在迭代的过程中连接链表并不断更新头尾节点就行，最后
-  再将头尾节点连接起来构成循环链表。    
+  再将头尾节点连接起来构成循环链表。
+  
+* [501. 二叉搜索树中的众数](https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/)
+  使用额外空间进行存储是简单的，难点在于如何不利用额外的空间。这里考虑到二叉搜索树的性质，
+  相等的数肯定连接在一起，因此通过维护一个全局的最大长度以及前一个值，结合中序遍历，可以完成这个操作。 
+  
+* [530. 二叉搜索树的最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/)
+  与众数类似，维护一个全局的最大长度以及前一个值，结合中序遍历，可以完成这个操作。
+  
+* [剑指 Offer II 053. 二叉搜索树中的中序后继](https://leetcode-cn.com/problems/P5rCT8/) 
+  同样维护前一个节点，然后结合中序遍历即可。 
   
 #### 两层递归嵌套
 目前遇到的一种情况就是需要遍历其中一颗树的所有节点作为开始节点，然后开始判断是否是子结构
