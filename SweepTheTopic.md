@@ -1222,7 +1222,7 @@ Java中对于负数求余数也还是负数，因此要处理一下：
     
 ### 树（Tree）
 
-#### 1. 两棵树同时遍历：
+#### 两棵树同时遍历：
 
 * [617. 合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)
   基本思路还是深度遍历，这种两个树的，就细心点考虑一些不同的情况组合就行，并且这里涉及到构建一颗新树，
@@ -1244,7 +1244,7 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
 }
 ```  
 
-#### 2. 深度递归返回左右子树结果，然后当前节点拼接左右子树结果获得最终结果：
+#### 深度递归返回左右子树结果，然后当前节点拼接左右子树结果获得最终结果：
 
 * [124. 二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
   由于最大路径不一定是过root节点，因此这题需要设一个max来比较，并且递归过程中返回的和与max比较的还不太一样，
@@ -1275,13 +1275,29 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   在这之前便是该节点的左子树，之后是右子树，然后判断第一个大于的节点后的所有值都不小于该节点的值再加上左右子树
   也满足条件，便OK。  
   
-#### 3. 完全二叉树的性质利用：
+#### 完全二叉树的性质利用：
 
 * [222. 完全二叉树的节点个数](https://leetcode-cn.com/problems/count-complete-tree-nodes/)
   重复利用完全二叉树的性质，只有最后一层需要计算，那如何计算就利用二分 + 位运算，来判断底层那个点是否存在。
   还有要注意的就是位运算的级别最低，一定要加括号。
   
-#### 4. 二叉搜索树性质的利用：
+#### 二叉搜索树性质的利用：
+
+二叉树搜索树介绍详见 [README.md](./README.md)
+
+常规增删改查：
+
+* [450. 删除二叉搜索树中的节点](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
+  删除操作找到目标节点后，根据其不同的子树情况，有几种情况，需要分别考虑。
+  
+* [701. 二叉搜索树中的插入操作](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
+
+* [700. 二叉搜索树中的搜索](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/)
+  
+* [剑指 Offer 54. 二叉搜索树的第k大节点](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)
+  O(N)复杂度不难，难点是如何得到O(logN)，需要在节点中额外维护一个leftSize属性
+
+其它变换：   
 
 * [剑指 Offer 68 - I. 二叉搜索树的最近公共祖先 Easy](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)  
   相比单纯的二叉树，可以充分利用二叉搜索树的性质，就是是有序的，因此当前节点无法作为最近公共祖先情况
@@ -1293,14 +1309,14 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   常用技巧之一就是哑元节点，然后在迭代的过程中连接链表并不断更新头尾节点就行，最后
   再将头尾节点连接起来构成循环链表。    
   
-#### 5. 两层递归嵌套
+#### 两层递归嵌套
 目前遇到的一种情况就是需要遍历其中一颗树的所有节点作为开始节点，然后开始判断是否是子结构
 
 * [剑指 Offer 26. 树的子结构 Median](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)
   这题有个不同于之前的树的题，就在于关于子结构，A中每个节点都可能作为开始节点，因此
   首先需要遍历这个A中每个节点，同时以每个A的节点为开始节点后进行和B的逐个节点的比较。
   
-#### 6. 序列化二叉树
+#### 序列化二叉树
 本质就是运用遍历算法，并且利用了一个特点就是一般情况下单个前序或其它遍历是无法复原二叉树的，
 但是如果添加了null节点，就可以了。 
 
@@ -1315,7 +1331,7 @@ public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
   
   String 判断是否相同要使用 equals 不能用 ==
   
-#### 7. 前序遍历回溯
+#### 前序遍历回溯
   
 * [257. 二叉树的所有路径](https://leetcode-cn.com/problems/binary-tree-paths/)
   使用前序遍历配合StringBuilder进行回溯，先记住加入前`int size = builder.size()`

@@ -438,70 +438,119 @@ class Node {
 深度遍历实现：
 
 ```java
-// 前序遍历
-private void preorder(Node root, List<Integer> result) {
-    if (root != null) {
-        result.add(root.val);
-        for (int i = 0; i < root.children.size(); i++) {
-            preorder(root.children.get(i), result);
-        }
-    }
-}
-
-// 后序遍历
-private void postorder(Node root, List<Integer> result) {
-    if (root != null) {
-        for (int i = 0; i < root.children.size(); i++) {
-            postorder(root.children.get(i), result);
-        }
-        result.add(root.val);
-    }
-}
-
-// 二叉树中序遍历
-private void inorder(Node root, List<Integer> result) {
-    if (root != null) {
-        inorder(root.left, result);
-        result.add(root.val);
-        inorder(root.right, result);
-    }
-}
-```
-
-```java
-// 栈实现多叉树的前序遍历，后序只是访问顺序的区别, 二叉树则是children变成左右子树即可
-private void preorder(Node root, List<Integer> result) {
+class TreeDFS {
+    // 前序遍历-递归
+    public void preorder(Node root, List<Integer> result) {
         if (root != null) {
-            Stack<Node> stack = new Stack<>();
-            stack.push(root);
-            while(!stack.isEmpty()) {
-                Node node = stack.pop();
-                result.add(node.val);
-                for (int i = node.children.size() - 1; i >= 0; i--) { // 栈需要反着放
-                    stack.push(node.children.get(i));
-                }
+            // 具体操作，可以换成其它
+            result.add(root.val);
+            for (int i = 0; i < root.children.size(); i++) {
+                preorder(root.children.get(i), result);
             }
         }
     }
-
-// TODO 二叉树中序遍历的实现
+    
+    // 后序遍历-递归
+    public void postorder(Node root, List<Integer> result) {
+        if (root != null) {
+            for (int i = 0; i < root.children.size(); i++) {
+                postorder(root.children.get(i), result);
+            }
+            // 具体操作，可以换成其它
+            result.add(root.val);
+        }
+    }
+    
+    // 二叉树中序遍历-递归
+    public void inorder(Node root, List<Integer> result) {
+        if (root != null) {
+            inorder(root.left, result);
+            // 具体操作，可以换成其它
+            result.add(root.val);
+            inorder(root.right, result);
+        }
+    }
+    
+    // 栈实现多叉树的前序遍历-迭代，二叉树则是children变成左右子树即可
+    public void preorder(Node root, List<Integer> result) {
+            if (root != null) {
+                Stack<Node> stack = new Stack<>();
+                stack.push(root);
+                while(!stack.isEmpty()) {
+                    Node node = stack.pop();
+                    // 具体操作，可以换成其它
+                    result.add(node.val);
+                    // 保证左右顺序，栈需要反着放
+                    for (int i = node.children.size() - 1; i >= 0; i--) { 
+                        stack.push(node.children.get(i));
+                    }
+                }
+            }
+        }
+     
+     // 栈实现多叉树的后序遍历-迭代   
+     // 前序遍历顺序是中左右 后序是左右中，因此后序可以通过前序转换过来：
+     // 中右左：stack入栈先入左，可以得到；-> 左右中：最后result进行reverse   
+     public void postorder(Node root, List<Integer> result) {
+        if (root == null) {
+            return rseult;
+        }
+        
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        List<Integer> reverseResult = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            // 具体操作，可以换成其它
+            reverseResult.add(node.val);
+            // 顺序就是右左
+            for (int i = 0; i < node.children.size() - 1; i++) {
+                stack.push(node.children.get(i));
+            }
+        }
+        
+        for (int i = 0; i < reverseResult.size(); i++) {
+            result.add(reverseResult.get(i));
+        }
+     }
+     
+    // 栈实现二叉树的中序遍历-迭代
+    public void inorder(Node root, List<Integer> result) {
+        Stack<Integer> stack = new Stack<>();
+        Node cur = root;
+        while (cur != null || !stack.isEmpty()) {
+            if (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                cur = stack.pop();
+                // 具体操作，可以换成其它
+                result.add(cur.val);
+                cur = cur.right;
+            }
+        }
+    }
+}
 ```
 
 广度遍历实现：
 
 ```java
-private void BFS(Node root, List<Integer> result) {
-    Queue<Node> queue = new LinkedList<>();
-    if(root != null) {
-        queue.offer(root);
-    }
-    while(!queue.isEmpty()) {
-        int size = queue.size();
-        for (int i = 0; i < size; i++) {
-            Node node = queue.poll();
-            result.add(node.val);
-            for (int i = 0; i < root.children.size(); i++) {
-                queue.offer(root.children.get(i));
+class TreeBFS {
+    // 队列实现树的广度遍历
+    public void BFS(Node root, List<Integer> result) {
+        Queue<Node> queue = new LinkedList<>();
+        if(root != null) {
+            queue.offer(root);
+        }
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Node node = queue.poll();
+                result.add(node.val);
+                for (int i = 0; i < root.children.size(); i++) {
+                    queue.offer(root.children.get(i));
+                }
             }
         }
     }
@@ -510,10 +559,33 @@ private void BFS(Node root, List<Integer> result) {
 
 PS. （当树的表示方式包含了父节点，checkstyle内部有实现一个不借助栈的迭代方式。）
 
-二叉搜索树是一种常见的树数据结构，特定包括：
+二叉搜索树是一种常见的树数据结构，定义包括：
 
-* 左子树的所有节点一定不大于父节点，右子树的所有节点一定不小于父节点
+* 若左子树不为空，则左子树上的所有节点的值均小于父节点的值
+* 若右子树不为空，则右子树上的所有节点的值均大于父节点的值
+* 左右子树均为二叉搜索树
 * 中序遍历得到数值的有序排列
+
+需要掌握二叉搜索树的 插入、删除、查询操作 以及 **查询第k个数（优化）**
+
+这里的相关操作 最核心的是利用二叉搜索树的特有性质，可以进行二分查找类似
+的操作，使得时间复杂度都在O(logN)，其中 
+
+* **删除操作找到目标节点后，根据其不同的子树情况，有几种情况，需要分别考虑**
+
+* **查询第k个数（优化），为了降低时间复杂度，需要在Node中额外维护左子树大小**
+
+```java
+class BSTNode {
+    public int val;
+    public Node left;
+    public Node right;
+    // 维护左子树大小，优化查询第k个数时间复杂度
+    public int leftSize;
+}
+```
+
+具体实现：[二叉搜索树实现](./src/main/java/TreeTopic/BinarySearchTree/BSTree.java)
 
 完全二叉树也是一种常见的数据结构，比如用来完成堆排序，特定包括：
 
