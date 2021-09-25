@@ -979,6 +979,9 @@ dp[j] = max(dp[j-weight[i]] + value[i]), i代表N个物品，依次比较。
   
 最小值问题：
 
+* [787. K 站中转内最便宜的航班 Median](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/)
+  这题和1928. 规定时间内到达终点的最小花费做法基本上是一致的，完全背包结合图来进行处理。
+
 * [1928. 规定时间内到达终点的最小花费](https://leetcode-cn.com/problems/minimum-cost-to-reach-destination-in-time/)
   这题转换一下，背包容量就是时间，然后可以重复选择的是城市，要求时间不大于最大背包容量的前提下的从城市0-n-1的最小花费。
   就相当于一个完全背包问题的变种。
