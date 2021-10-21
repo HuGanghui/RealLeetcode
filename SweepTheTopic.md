@@ -813,6 +813,10 @@ Easy:
 * [198. 打家劫舍](https://leetcode-cn.com/problems/house-robber/submissions/)
   和17.16按摩师一模一样的，递推公式：$dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i])$
   
+* [间隔最大和](华为面试题 2021.10.18)
+  递推公式，计算到当前元素能够获取的最大和，这样可以通过递推的方式解决问题，
+  递推方程：$dp[i] = Math.max(dp[i-2] + array[i], dp[i-3] + array[i])$。
+  
 Median:
 
 * [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)
